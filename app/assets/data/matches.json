@@ -1,0 +1,170 @@
+[
+  {
+    "id": "CS-J2-1",
+    "name": "1/8 Finale",
+    "homeTeam": {
+      "name": "Delémont Blizzard",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_blizzard.500x500.jpg",
+      "color": "white"
+    },
+    "awayTeam": {
+      "name": "Val-de-Ruz Pingouins",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "blue"
+    }
+  },
+  {
+    "id": "CS-J2-2",
+    "name": "1/8 Finale",
+    "homeTeam": {
+      "name": "Delémont Thunder",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_thunder.500x500.jpg",
+      "color": "white"
+    },
+    "awayTeam": {
+      "name": "Geneva Young Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "black"
+    }
+  },
+  {
+    "id": "CS-J2-3",
+    "name": "1/8 Finale",
+    "homeTeam": {
+      "name": "Puplinge Olympus",
+      "logo": "https://cdn.leverade.com/thumbnails/AasMRdhLATsh.500x500.jpg",
+      "color": "yellow"
+    },
+    "awayTeam": {
+      "name": "Vernier Turtles",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
+      "color": "green"
+    }
+  },
+  {
+    "id": "CS-J2-4A",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "pink"
+    },
+    "awayTeam": {
+      "name": "Delémont Blizzard",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_blizzard.500x500.jpg",
+      "color": "white"
+    }
+  },
+  {
+    "id": "CS-J2-4B",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "pink"
+    },
+    "awayTeam": {
+      "name": "Val-de-Ruz Pingouins",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "blue"
+    }
+  },
+  {
+    "id": "CS-J2-5",
+    "name": "1/8 Finale",
+    "homeTeam": {
+      "name": "Geneva Dragons M21",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "black"
+    },
+    "awayTeam": {
+      "name": "Carouge Lions",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/carouge_lions.500x500.jpg",
+      "color": "red"
+    }
+  },
+  {
+    "id": "CS-J2-6A",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Geneva Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "black"
+    },
+    "awayTeam": {
+      "name": "Delémont Thunder",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_thunder.500x500.jpg",
+      "color": "white"
+    }
+  },
+  {
+    "id": "CS-J2-6B",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Geneva Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "black"
+    },
+    "awayTeam": {
+      "name": "Geneva Young Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "red"
+    }
+  },
+  {
+    "id": "CS-J2-7A",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
+      "color": "yellow"
+    },
+    "awayTeam": {
+      "name": "Puplinge Olympus",
+      "logo": "https://cdn.leverade.com/thumbnails/AasMRdhLATsh.500x500.jpg",
+      "color": "blue"
+    }
+  },
+  {
+    "id": "CS-J2-7B",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
+      "color": "yellow"
+    },
+    "awayTeam": {
+      "name": "Vernier Turtles",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
+      "color": "green"
+    }
+  },
+  {
+    "id": "CS-J2-8A",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "green"
+    },
+    "awayTeam": {
+      "name": "Carouge Lions",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/carouge_lions.500x500.jpg",
+      "color": "red"
+    }
+  },
+  {
+    "id": "CS-J2-8B",
+    "name": "1/4 Finale",
+    "homeTeam": {
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "green"
+    },
+    "awayTeam": {
+      "name": "Geneva Dragons M21",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "red"
+    }
+  }
+]

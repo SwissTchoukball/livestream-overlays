@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-VariableFont-opti.woff2') format('woff2-variations');
+  font-style: normal;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
