@@ -91,7 +91,7 @@ const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png',
     padding: 12px 10px;
   }
 
-  > *:first-child {
+  & > *:first-child {
     border-bottom: 2px solid #ccc;
   }
 }

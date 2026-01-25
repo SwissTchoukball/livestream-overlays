@@ -22,8 +22,8 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
 .score-box {
   width: 300px;
   height: 130px;
-  margin-top: 40px;
-  background: linear-gradient(to right, #3e2169, #008b3e);
+  margin-top: 55px;
+  background: linear-gradient(to top right, #3e2169, #008b3e);
   border-radius: 20px;
   text-align: center;
 
