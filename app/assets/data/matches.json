@@ -38,7 +38,7 @@
     "awayTeam": {
       "name": "Vernier Turtles",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
-      "color": "green"
+      "color": "#88CF33"
     }
   },
   {
@@ -47,7 +47,7 @@
     "homeTeam": {
       "name": "Val-de-Ruz Flyers",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "pink"
+      "color": "blue"
     },
     "awayTeam": {
       "name": "Delémont Blizzard",
@@ -61,12 +61,12 @@
     "homeTeam": {
       "name": "Val-de-Ruz Flyers",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "pink"
+      "color": "blue"
     },
     "awayTeam": {
       "name": "Val-de-Ruz Pingouins",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "blue"
+      "color": "deeppink"
     }
   },
   {
@@ -80,7 +80,7 @@
     "awayTeam": {
       "name": "Carouge Lions",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/carouge_lions.500x500.jpg",
-      "color": "red"
+      "color": "green"
     }
   },
   {
@@ -117,12 +117,12 @@
     "homeTeam": {
       "name": "La Chaux-de-Fonds Beehives",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
-      "color": "yellow"
+      "color": "black"
     },
     "awayTeam": {
       "name": "Puplinge Olympus",
       "logo": "https://cdn.leverade.com/thumbnails/AasMRdhLATsh.500x500.jpg",
-      "color": "blue"
+      "color": "yellow"
     }
   },
   {
@@ -131,12 +131,12 @@
     "homeTeam": {
       "name": "La Chaux-de-Fonds Beehives",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
-      "color": "yellow"
+      "color": "black"
     },
     "awayTeam": {
       "name": "Vernier Turtles",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
-      "color": "green"
+      "color": "#88CF33"
     }
   },
   {
@@ -145,7 +145,7 @@
     "homeTeam": {
       "name": "Lausanne Olympic",
       "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
-      "color": "green"
+      "color": "white"
     },
     "awayTeam": {
       "name": "Carouge Lions",
@@ -159,7 +159,7 @@
     "homeTeam": {
       "name": "Lausanne Olympic",
       "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
-      "color": "green"
+      "color": "white"
     },
     "awayTeam": {
       "name": "Geneva Dragons M21",
