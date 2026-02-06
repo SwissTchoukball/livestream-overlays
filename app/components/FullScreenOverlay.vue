@@ -1,9 +1,15 @@
 <template>
   <div class="full-screen-overlay">
-    <CornerLogo />
+    <CornerLogo :size="cornerLogoSize" />
     <slot />
   </div>
 </template>
+
+<script lang="ts" setup>
+defineProps<{
+  cornerLogoSize?: 'small' | 'large';
+}>();
+</script>
 
 <style scoped>
 .full-screen-overlay {

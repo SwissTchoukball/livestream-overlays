@@ -1,8 +1,8 @@
 <template>
-  <div class="teams" :class="{ 'teams--with-score-box': withScoreBox }">
+  <div class="teams" :class="{ 'teams--with-score-box': withScoreBox, 'teams--logos-only': logosOnly }">
     <div class="team team--home">
       <div class="team-logo"><img v-if="homeTeam" :src="homeTeam.logo" /></div>
-      <div class="team-name">{{ homeTeam?.name || '' }}</div>
+      <div v-if="!logosOnly" class="team-name">{{ homeTeam?.name || '' }}</div>
     </div>
 
     <ScoreBox v-if="withScoreBox" class="teams__score-box" />
@@ -13,7 +13,7 @@
         <img v-if="awayTeam" :src="awayTeam.logo" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
-      <div class="team-name">{{ awayTeam?.name || '' }}</div>
+      <div v-if="!logosOnly" class="team-name">{{ awayTeam?.name || '' }}</div>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{
   homeTeam: Team | null;
   awayTeam: Team | null;
   withScoreBox?: boolean;
+  logosOnly?: boolean;
 }>();
 </script>
 
@@ -71,13 +72,13 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{
   }
 }
 
-.team-logo img {
-  height: 23cqh;
-}
-
+.team-logo img,
 .team-logo-placeholder {
-  width: 17cqh;
   height: 23cqh;
+
+  .teams--logos-only & {
+    height: 37cqh;
+  }
 }
 
 .separator {

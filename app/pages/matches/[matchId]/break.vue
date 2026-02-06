@@ -1,7 +1,7 @@
 <template>
   <OverlayViewer>
     <TransparentOverlay>
-      <CornerLogo small />
+      <CornerLogo size="small" />
       <div class="next-set-box">Prochain set :</div>
 
       <div class="teams">

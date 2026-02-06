@@ -14,9 +14,9 @@
   border-top: 0;
   border-left: 0;
 
-  @media (min-resolution: 2x) {
+  /* @media (min-resolution: 2x) {
     width: 960px;
     height: 540px;
-  }
+  } */
 }
 </style>

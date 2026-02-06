@@ -1,5 +1,5 @@
 <template>
-  <svg viewBox="0 -15 100 120" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 -10 100 120" preserveAspectRatio="xMidYMid meet">
     <g transform="translate(50,50) scale(1,1.15) translate(-50,-50)">
       <path
         d="M 8 10 Q 50 -3, 92 10 C 96 35, 96 68, 50 98 C 4 68, 4 35, 8 10 Z"

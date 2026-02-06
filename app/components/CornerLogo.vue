@@ -1,12 +1,14 @@
 <template>
-  <div class="corner-logo" :class="{ 'corner-logo--small': small }"><img :src="logoSrc" /></div>
+  <div class="corner-logo" :class="{ [`corner-logo--${size}`]: size }">
+    <img :src="logoSrc" />
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { withBase } from 'ufo';
 
-const { small } = defineProps<{
-  small?: boolean;
+defineProps<{
+  size?: 'small' | 'large';
 }>();
 
 const logoSrc = computed(() => withBase('/images/corner-logo.png', useRuntimeConfig().app.baseURL));
@@ -26,6 +28,12 @@ const logoSrc = computed(() => withBase('/images/corner-logo.png', useRuntimeCon
   &.corner-logo--small {
     img {
       height: 50%;
+    }
+  }
+
+  &.corner-logo--large {
+    img {
+      height: 90%;
     }
   }
 }
