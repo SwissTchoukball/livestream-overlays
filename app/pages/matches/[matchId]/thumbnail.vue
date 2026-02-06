@@ -1,9 +1,9 @@
 <template>
   <OverlayViewer>
     <FullScreenOverlay>
-      <div class="game-over-message">Match terminé !</div>
+      <div class="match-name">{{ match?.name }}</div>
 
-      <TeamsWithLogo v-if="match" :home-team="match.homeTeam" :away-team="match.awayTeam" with-score-box />
+      <TeamsWithLogo v-if="match" :home-team="match?.homeTeam" :away-team="match?.awayTeam" />
     </FullScreenOverlay>
   </OverlayViewer>
 </template>
@@ -16,14 +16,14 @@ const match = computed(() => getMatchById(route.params.matchId as string));
 </script>
 
 <style scoped>
-.game-over-message {
+.match-name {
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 6%;
   text-transform: uppercase;
   text-align: right;
   line-height: 1;
-  font-size: 5.5cqh;
   font-weight: 700;
+  font-size: 14cqh;
 }
 </style>

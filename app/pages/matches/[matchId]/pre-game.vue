@@ -26,15 +26,27 @@ const match = computed(() => getMatchById(route.params.matchId as string));
   text-transform: uppercase;
   text-align: right;
   line-height: 1;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.05em;
+  animation: upcoming-float 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .upcoming-message-text {
-  font-size: 60px;
+  font-size: 5.5cqh;
 }
 
 .upcoming-message-match-name {
   font-weight: 700;
-  font-size: 90px;
+  font-size: 8.5cqh;
+}
+
+@keyframes upcoming-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.2cqh);
+  }
 }
 </style>

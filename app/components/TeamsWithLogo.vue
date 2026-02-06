@@ -1,22 +1,29 @@
 <template>
   <div class="teams" :class="{ 'teams--with-score-box': withScoreBox }">
     <div class="team team--home">
-      <div class="team-logo"><img :src="homeTeam.logo" /></div>
-      <div class="team-name">{{ homeTeam.name }}</div>
+      <div class="team-logo"><img v-if="homeTeam" :src="homeTeam.logo" /></div>
+      <div class="team-name">{{ homeTeam?.name || '' }}</div>
     </div>
 
     <ScoreBox v-if="withScoreBox" class="teams__score-box" />
     <div v-else class="separator">×</div>
 
     <div class="team team--away">
-      <div class="team-logo"><img :src="awayTeam.logo" /></div>
-      <div class="team-name">{{ awayTeam.name }}</div>
+      <div class="team-logo">
+        <img v-if="awayTeam" :src="awayTeam.logo" />
+        <UnknownTeamLogo v-else class="team-logo-placeholder" />
+      </div>
+      <div class="team-name">{{ awayTeam?.name || '' }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const { homeTeam, awayTeam, withScoreBox } = defineProps<{ homeTeam: Team; awayTeam: Team; withScoreBox?: boolean }>();
+const { homeTeam, awayTeam, withScoreBox } = defineProps<{
+  homeTeam: Team | null;
+  awayTeam: Team | null;
+  withScoreBox?: boolean;
+}>();
 </script>
 
 <style scoped>
@@ -28,10 +35,10 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{ homeTeam: Team; awayT
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 100px;
+  gap: 5.2cqw;
 
   &.teams--with-score-box {
-    gap: 70px;
+    gap: 3.6cqw;
   }
 }
 
@@ -41,23 +48,23 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{ homeTeam: Team; awayT
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 0.5cqw;
 
   &.team--home {
     align-items: flex-end;
-    padding-left: 30px;
+    padding-left: 1.5cqw;
   }
 
   &.team--away {
     align-items: flex-start;
-    padding-right: 30px;
+    padding-right: 1.5cqw;
   }
 }
 
 .team-name {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 5.5cqh;
 
   .team--home & {
     text-align: right;
@@ -65,17 +72,22 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{ homeTeam: Team; awayT
 }
 
 .team-logo img {
-  height: 250px;
+  height: 23cqh;
+}
+
+.team-logo-placeholder {
+  width: 17cqh;
+  height: 23cqh;
 }
 
 .separator {
   align-self: center;
-  font-size: 400px;
+  font-size: 37cqh;
   font-weight: 100;
   line-height: 0;
 }
 
 .teams__score-box {
-  margin-top: 70px;
+  margin-top: 6.5cqh;
 }
 </style>

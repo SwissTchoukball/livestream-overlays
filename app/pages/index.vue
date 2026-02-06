@@ -2,8 +2,11 @@
   <main>
     <ul>
       <li v-for="match in matches" :key="match.id" class="match-item">
-        <h4>{{ match.id }} — {{ match.name }} — {{ match.homeTeam.name }} × {{ match.awayTeam.name }}</h4>
+        <h4>
+          {{ match.id }} — {{ match.name }} — {{ match.homeTeam?.name || '?' }} × {{ match.awayTeam?.name || '?' }}
+        </h4>
 
+        <NuxtLink :to="{ name: 'matches-matchId-thumbnail', params: { matchId: match.id } }">Vignette</NuxtLink> /
         <NuxtLink :to="{ name: 'matches-matchId-pre-game', params: { matchId: match.id } }">Pré-match</NuxtLink> /
         <NuxtLink :to="{ name: 'matches-matchId-play-time', params: { matchId: match.id } }">Jeu</NuxtLink> /
         <NuxtLink :to="{ name: 'matches-matchId-break', params: { matchId: match.id } }">Pause</NuxtLink> /

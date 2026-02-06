@@ -7,6 +7,6 @@ interface Team {
 interface Match {
   id: string;
   name: string;
-  homeTeam: Team;
-  awayTeam: Team;
+  homeTeam: Team | null;
+  awayTeam: Team | null;
 }

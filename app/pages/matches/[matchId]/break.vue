@@ -6,13 +6,13 @@
 
       <div class="teams">
         <div class="team team--home">
-          <div class="team-name">{{ match?.homeTeam.name }}</div>
+          <div class="team-name">{{ match?.homeTeam?.name || '' }}</div>
         </div>
 
         <ScoreBox hide-label />
 
         <div class="team team--away">
-          <div class="team-name">{{ match?.awayTeam.name }}</div>
+          <div class="team-name">{{ match?.awayTeam?.name || '' }}</div>
         </div>
       </div>
     </TransparentOverlay>
@@ -34,26 +34,26 @@ const match = computed(() => getMatchById(route.params.matchId as string));
   text-transform: uppercase;
   text-align: right;
   line-height: 1;
-  font-size: 65px;
+  font-size: 6cqh;
   font-weight: 400;
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 20px;
-  padding-bottom: 110px;
-  border-radius: 10px;
+  padding: 1cqw;
+  padding-bottom: 10.2cqh;
+  border-radius: 1cqh;
 }
 
 .teams {
   position: absolute;
-  top: 71.5%;
+  top: 71.5cqh;
   width: 100%;
-  min-height: 200px;
+  min-height: 18.5cqh;
   background-color: rgba(255, 255, 255, 0.7);
-  padding-block: 25px;
+  padding-block: 2.3cqh;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 70px;
+  gap: 3.6cqw;
 }
 
 .team {
@@ -62,23 +62,23 @@ const match = computed(() => getMatchById(route.params.matchId as string));
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 0.5cqw;
 
   &.team--home {
     align-items: flex-end;
-    padding-left: 30px;
+    padding-left: 1.5cqw;
   }
 
   &.team--away {
     align-items: flex-start;
-    padding-right: 30px;
+    padding-right: 1.5cqw;
   }
 }
 
 .team-name {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 5.5cqh;
 
   .team--home & {
     text-align: right;

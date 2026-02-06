@@ -13,18 +13,18 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
 
 <style scoped>
 .score-label {
-  font-size: 60px;
+  font-size: 5.5cqh;
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
 }
 
 .score-box {
-  width: 300px;
-  height: 130px;
-  margin-top: 55px;
+  width: 27.8cqh;
+  height: 12cqh;
+  margin-top: 5.1cqh;
   background: linear-gradient(to top right, #3e2169, #008b3e);
-  border-radius: 20px;
+  border-radius: 1cqw;
   text-align: center;
 
   &:first-child {
@@ -38,7 +38,7 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 100px;
+  font-size: 9.3cqh;
   font-weight: 700;
 }
 </style>
