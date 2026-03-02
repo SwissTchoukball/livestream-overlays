@@ -3,7 +3,12 @@
     <FullScreenOverlay corner-logo-size="large" class="thumbnail">
       <div class="match-name">{{ match?.name }}</div>
 
-      <TeamsWithLogo v-if="match" :home-team="match?.homeTeam" :away-team="match?.awayTeam" logos-only />
+      <TeamsWithLogo
+        v-if="match && (match.homeTeam || match.awayTeam)"
+        :home-team="match?.homeTeam"
+        :away-team="match?.awayTeam"
+        logos-only
+      />
     </FullScreenOverlay>
   </OverlayViewer>
 </template>
