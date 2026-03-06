@@ -1,7 +1,8 @@
 <template>
-  <OverlayViewer>
+  <OverlayViewer :competition="match?.competition">
     <TransparentOverlay>
-      <CornerLogo size="small" />
+      <LogoScroller class="logo-scroller" />
+      <CornerLogo size="small" :competition="match?.competition" />
       <div class="next-set-box">Prochain set :</div>
 
       <div class="teams">
@@ -40,6 +41,13 @@ const match = computed(() => getMatchById(route.params.matchId as string));
   padding: 1cqw;
   padding-bottom: 10.2cqh;
   border-radius: 1cqh;
+}
+
+.logo-scroller {
+  position: absolute;
+  top: 30cqh;
+  left: 0;
+  width: 100%;
 }
 
 .teams {

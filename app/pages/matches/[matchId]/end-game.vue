@@ -1,6 +1,6 @@
 <template>
-  <OverlayViewer>
-    <FullScreenOverlay>
+  <OverlayViewer :competition="match?.competition">
+    <FullScreenOverlay :competition="match?.competition">
       <div class="game-over-message">Match terminé !</div>
 
       <TeamsWithLogo v-if="match" :home-team="match.homeTeam" :away-team="match.awayTeam" with-score-box />

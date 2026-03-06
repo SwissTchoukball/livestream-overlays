@@ -1,13 +1,14 @@
 <template>
   <div class="full-screen-overlay">
-    <CornerLogo :size="cornerLogoSize" />
+    <CornerLogo :size="cornerLogoSize" :competition="competition" />
     <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+const { cornerLogoSize = 'small', competition = undefined } = defineProps<{
   cornerLogoSize?: 'small' | 'large';
+  competition?: string;
 }>();
 </script>
 

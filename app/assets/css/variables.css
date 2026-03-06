@@ -1,0 +1,10 @@
+:root {
+  --gradient-score-box: linear-gradient(to top right, #cf2f28, #e5989b);
+  --gradient-score-separator: linear-gradient(to bottom, white, #ccc);
+  --gradient-set-box: linear-gradient(to top right, #cf2f28, #e5989b);
+}
+
+.theme-swiss-cup-2026 {
+  --gradient-score-box: linear-gradient(to top right, #3e2169, #008b3e);
+  --gradient-set-box: linear-gradient(to top right, #21324a, #336f4b);
+}

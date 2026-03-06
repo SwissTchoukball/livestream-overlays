@@ -1,17 +1,19 @@
 <template>
   <div class="corner-logo" :class="{ [`corner-logo--${size}`]: size }">
-    <img :src="logoSrc" />
+    <img :src="logoSrc" :onerror="`this.src='${logoSrcFallback}'`" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { withBase } from 'ufo';
 
-defineProps<{
+const { size = 'small', competition = undefined } = defineProps<{
   size?: 'small' | 'large';
+  competition?: string;
 }>();
 
-const logoSrc = computed(() => withBase('/images/corner-logo.png', useRuntimeConfig().app.baseURL));
+const logoSrc = computed(() => withBase(`/images/${competition}/corner-logo.png`, useRuntimeConfig().app.baseURL));
+const logoSrcFallback = computed(() => withBase('/images/corner-logo.png', useRuntimeConfig().app.baseURL));
 </script>
 
 <style scoped>
@@ -21,7 +23,8 @@ const logoSrc = computed(() => withBase('/images/corner-logo.png', useRuntimeCon
   left: 0;
   height: 100%;
 
-  img {
+  img,
+  object {
     height: 70%;
   }
 

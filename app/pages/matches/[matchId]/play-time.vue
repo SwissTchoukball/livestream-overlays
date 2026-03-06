@@ -1,9 +1,11 @@
 <template>
-  <OverlayViewer>
+  <OverlayViewer :competition="match?.competition">
     <TransparentOverlay>
-      <div class="corner-decoration"><img :src="cornerDecorationSrc" /></div>
+      <div class="corner-decoration">
+        <img :src="cornerDecorationSrc" :onerror="`this.src='${cornerDecorationSrcFallback}'`" />
+      </div>
 
-      <div class="play-time-score">
+      <div class="play-time-score" :class="{ 'play-time-score--sets': match?.mode === 'sets' }">
         <div class="box box--teams">
           <div class="team">
             <div class="team-color" :style="`color: ${match?.homeTeam?.color || 'white'}`">&#x25B6;</div>
@@ -15,17 +17,21 @@
           </div>
         </div>
 
-        <div class="set-label">Sets</div>
-        <div class="box box--sets">
-          <div class="set-score">&nbsp;</div>
-          <div class="set-score">&nbsp;</div>
-        </div>
+        <template v-if="match?.mode === 'sets'">
+          <div class="set-label">Sets</div>
+          <div class="box box--sets">
+            <div class="set-score">&nbsp;</div>
+            <div class="set-score">&nbsp;</div>
+          </div>
+        </template>
 
         <div class="point-label">Points</div>
         <div class="box box--points">
           <div class="point-score">&nbsp;</div>
           <div class="point-score">&nbsp;</div>
         </div>
+
+        <div v-if="match?.mode === 'time'" class="box box--time"></div>
       </div>
     </TransparentOverlay>
   </OverlayViewer>
@@ -39,7 +45,12 @@ const { getMatchById } = useMatches();
 
 const match = computed(() => getMatchById(route.params.matchId as string));
 
-const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png', useRuntimeConfig().app.baseURL));
+const cornerDecorationSrc = computed(() =>
+  withBase(`/images/${match.value?.competition}/corner-visual.png`, useRuntimeConfig().app.baseURL)
+);
+const cornerDecorationSrcFallback = computed(() =>
+  withBase('/images/corner-visual.png', useRuntimeConfig().app.baseURL)
+);
 </script>
 
 <style scoped>
@@ -49,7 +60,8 @@ const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png',
   left: 0;
   height: 15%;
 
-  img {
+  img,
+  object {
     height: 100%;
   }
 }
@@ -61,9 +73,15 @@ const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png',
 
   display: grid;
   grid-template-areas:
-    'empty set-label point-label'
-    'teams sets points';
+    'empty point-label empty-2'
+    'teams points      time';
   gap: 0.2cqh 0.3cqw;
+
+  &.play-time-score--sets {
+    grid-template-areas:
+      'empty set-label point-label'
+      'teams sets      points';
+  }
 }
 
 .set-label,
@@ -105,8 +123,7 @@ const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png',
 .box--sets {
   grid-area: sets;
   width: 2.6cqw;
-  /* top-bottom gradient background */
-  background: linear-gradient(to top right, #21324a, #336f4b);
+  background-image: var(--gradient-set-box);
 }
 
 .box--points {
@@ -129,5 +146,13 @@ const cornerDecorationSrc = computed(() => withBase('/images/corner-visual.png',
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.05em;
+}
+
+.box--time {
+  grid-area: time;
+  width: 5cqw;
+  height: 2.5cqw;
+  background-color: grey;
+  align-self: center;
 }
 </style>

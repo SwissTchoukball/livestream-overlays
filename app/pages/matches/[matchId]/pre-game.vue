@@ -1,6 +1,6 @@
 <template>
-  <OverlayViewer>
-    <FullScreenOverlay>
+  <OverlayViewer :competition="match?.competition">
+    <FullScreenOverlay :competition="match?.competition">
       <div class="upcoming-message">
         <div class="upcoming-message-text">Dans quelques instants :</div>
         <div class="upcoming-message-match-name">{{ match?.name }}</div>

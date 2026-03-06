@@ -1,7 +1,10 @@
 <template>
   <div class="teams" :class="{ 'teams--with-score-box': withScoreBox, 'teams--logos-only': logosOnly }">
     <div class="team team--home">
-      <div class="team-logo"><img v-if="homeTeam" :src="homeTeam.logo" /></div>
+      <div class="team-logo">
+        <img v-if="homeTeam" :src="homeTeam.logo" />
+        <UnknownTeamLogo v-else class="team-logo-placeholder" />
+      </div>
       <div v-if="!logosOnly" class="team-name">{{ homeTeam?.name || '' }}</div>
     </div>
 

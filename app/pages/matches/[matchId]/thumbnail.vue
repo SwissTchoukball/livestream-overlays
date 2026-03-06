@@ -1,6 +1,6 @@
 <template>
-  <OverlayViewer>
-    <FullScreenOverlay corner-logo-size="large" class="thumbnail">
+  <OverlayViewer :competition="match?.competition">
+    <FullScreenOverlay corner-logo-size="large" class="thumbnail" :competition="match?.competition">
       <div class="match-name">{{ match?.name }}</div>
 
       <TeamsWithLogo

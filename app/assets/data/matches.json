@@ -1,210 +1,210 @@
 [
   {
-    "id": "CS-J2-1",
-    "name": "1/8 Finale",
+    "id": "CS-J3-1",
+    "name": "1/2 finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
-      "name": "Delémont Blizzard",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_blizzard.500x500.jpg",
-      "color": "white"
-    },
-    "awayTeam": {
-      "name": "Val-de-Ruz Pingouins",
+      "name": "Val-de-Ruz Flyers",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "blue"
-    }
-  },
-  {
-    "id": "CS-J2-2",
-    "name": "1/8 Finale",
-    "homeTeam": {
-      "name": "Delémont Thunder",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_thunder.500x500.jpg",
-      "color": "white"
+      "color": "deeppink"
     },
     "awayTeam": {
-      "name": "Geneva Young Dragons",
+      "name": "Geneva Dragons",
       "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
       "color": "black"
     }
   },
   {
-    "id": "CS-J2-3",
-    "name": "1/8 Finale",
+    "id": "CS-J3-2",
+    "name": "1/2 finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
-      "name": "Puplinge Olympus",
-      "logo": "https://cdn.leverade.com/thumbnails/AasMRdhLATsh.500x500.jpg",
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
       "color": "yellow"
     },
     "awayTeam": {
-      "name": "Vernier Turtles",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
-      "color": "#88CF33"
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "purple"
     }
   },
   {
-    "id": "CS-J2-4",
-    "name": "1/4 Finale",
+    "id": "CS-J3-3",
+    "name": "Finale M16",
+    "competition": "junior-swiss-championship-2026",
+    "mode": "time",
     "homeTeam": {
-      "name": "Val-de-Ruz Flyers",
+      "name": "Val-de-Ruz",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "blue"
-    },
-    "awayTeam": null
-  },
-  {
-    "id": "CS-J2-4A",
-    "name": "1/4 Finale",
-    "homeTeam": {
-      "name": "Val-de-Ruz Flyers",
-      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "blue"
+      "color": "deeppink"
     },
     "awayTeam": {
-      "name": "Delémont Blizzard",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_blizzard.500x500.jpg",
-      "color": "white"
+      "name": "Charmilles Snake",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "blue"
     }
   },
   {
-    "id": "CS-J2-4B",
-    "name": "1/4 Finale",
+    "id": "CS-J3-4",
+    "name": "Finale M21",
+    "competition": "junior-swiss-championship-2026",
+    "mode": "time",
     "homeTeam": {
-      "name": "Val-de-Ruz Flyers",
-      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "blue"
+      "name": "Geneva Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "red"
     },
     "awayTeam": {
-      "name": "Val-de-Ruz Pingouins",
+      "name": "Val-de-Ruz",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
       "color": "deeppink"
     }
   },
   {
-    "id": "CS-J2-5",
-    "name": "1/8 Finale",
-    "homeTeam": {
-      "name": "Geneva Dragons M21",
-      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
-      "color": "black"
-    },
-    "awayTeam": {
-      "name": "Carouge Lions",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/carouge_lions.500x500.jpg",
-      "color": "green"
-    }
-  },
-  {
-    "id": "CS-J2-6",
-    "name": "1/4 Finale",
-    "homeTeam": {
-      "name": "Geneva Dragons",
-      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
-      "color": "black"
-    },
+    "id": "CS-J3-5",
+    "name": "Petite finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
+    "homeTeam": null,
     "awayTeam": null
   },
   {
-    "id": "CS-J2-6A",
-    "name": "1/4 Finale",
+    "id": "CS-J3-5A",
+    "name": "Petite finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
+    "homeTeam": {
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "deeppink"
+    },
+    "awayTeam": {
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
+      "color": "black"
+    }
+  },
+  {
+    "id": "CS-J3-5B",
+    "name": "Petite finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
+    "homeTeam": {
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "blue"
+    },
+    "awayTeam": {
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "white"
+    }
+  },
+  {
+    "id": "CS-J3-5C",
+    "name": "Petite finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
       "name": "Geneva Dragons",
       "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
-      "color": "black"
+      "color": "red"
     },
     "awayTeam": {
-      "name": "Delémont Thunder",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/delemont_thunder.500x500.jpg",
-      "color": "white"
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
+      "color": "black"
     }
   },
   {
-    "id": "CS-J2-6B",
-    "name": "1/4 Finale",
+    "id": "CS-J3-5D",
+    "name": "Petite finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
       "name": "Geneva Dragons",
       "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
-      "color": "black"
+      "color": "red"
     },
     "awayTeam": {
-      "name": "Geneva Young Dragons",
-      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
-      "color": "red"
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "white"
     }
   },
   {
-    "id": "CS-J2-7",
-    "name": "1/4 Finale",
-    "homeTeam": {
-      "name": "La Chaux-de-Fonds Beehives",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
-      "color": "black"
-    },
+    "id": "CS-J3-6",
+    "name": "Finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
+    "homeTeam": null,
     "awayTeam": null
   },
   {
-    "id": "CS-J2-7A",
-    "name": "1/4 Finale",
+    "id": "CS-J3-6A",
+    "name": "Finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "deeppink"
+    },
+    "awayTeam": {
       "name": "La Chaux-de-Fonds Beehives",
       "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
       "color": "black"
-    },
-    "awayTeam": {
-      "name": "Puplinge Olympus",
-      "logo": "https://cdn.leverade.com/thumbnails/AasMRdhLATsh.500x500.jpg",
-      "color": "yellow"
     }
   },
   {
-    "id": "CS-J2-7B",
-    "name": "1/4 Finale",
+    "id": "CS-J3-6B",
+    "name": "Finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
-      "name": "La Chaux-de-Fonds Beehives",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
-      "color": "black"
+      "name": "Val-de-Ruz Flyers",
+      "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
+      "color": "blue"
     },
     "awayTeam": {
-      "name": "Vernier Turtles",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/vernier_turtles.500x500.jpg",
-      "color": "#88CF33"
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "white"
     }
   },
   {
-    "id": "CS-J2-8",
-    "name": "1/4 Finale",
+    "id": "CS-J3-6C",
+    "name": "Finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
     "homeTeam": {
-      "name": "Lausanne Olympic",
-      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
-      "color": "white"
-    },
-    "awayTeam": null
-  },
-  {
-    "id": "CS-J2-8A",
-    "name": "1/4 Finale",
-    "homeTeam": {
-      "name": "Lausanne Olympic",
-      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
-      "color": "white"
-    },
-    "awayTeam": {
-      "name": "Carouge Lions",
-      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/carouge_lions.500x500.jpg",
-      "color": "red"
-    }
-  },
-  {
-    "id": "CS-J2-8B",
-    "name": "1/4 Finale",
-    "homeTeam": {
-      "name": "Lausanne Olympic",
-      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
-      "color": "white"
-    },
-    "awayTeam": {
-      "name": "Geneva Dragons M21",
+      "name": "Geneva Dragons",
       "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
       "color": "red"
+    },
+    "awayTeam": {
+      "name": "La Chaux-de-Fonds Beehives",
+      "logo": "https://files.tchoukball.ch/static/competition-teams-logos/la_chaux-de-fonds_beehives.500x500.jpg",
+      "color": "black"
+    }
+  },
+  {
+    "id": "CS-J3-6D",
+    "name": "Finale",
+    "competition": "swiss-cup-2026",
+    "mode": "sets",
+    "homeTeam": {
+      "name": "Geneva Dragons",
+      "logo": "https://cdn.leverade.com/thumbnails/AajaG3MKOj9l.500x500.jpg",
+      "color": "red"
+    },
+    "awayTeam": {
+      "name": "Lausanne Olympic",
+      "logo": "https://cdn.leverade.com/thumbnails/Z1DZfPTveWop0cVB5ZbNbkL0.500x500.jpg",
+      "color": "white"
     }
   }
 ]

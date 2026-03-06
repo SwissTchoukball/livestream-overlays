@@ -23,7 +23,7 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
   width: 27.8cqh;
   height: 12cqh;
   margin-top: 5.1cqh;
-  background: linear-gradient(to top right, #3e2169, #008b3e);
+  background-image: var(--gradient-score-box);
   border-radius: 1cqw;
   text-align: center;
 
@@ -34,7 +34,7 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
 
 .score-separator {
   /* Gradient font colour that goes from white to grey (top to bottom) */
-  background: linear-gradient(to bottom, white, #ccc);
+  background-image: var(--gradient-score-separator);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
