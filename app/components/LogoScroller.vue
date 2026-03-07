@@ -10,18 +10,20 @@
 </template>
 
 <script lang="ts" setup>
+import { withBase } from 'ufo';
+
 const logos = [
-  '/images/sponsor-logos/logo-baiutti.svg',
-  '/images/sponsor-logos/logo-bcf-fkb.svg',
-  '/images/sponsor-logos/logo-bio26.png',
-  '/images/sponsor-logos/logo-dany-sport.svg',
-  '/images/sponsor-logos/logo-fromagerie-arconciel.png',
-  '/images/sponsor-logos/logo-gfeller.png',
-  '/images/sponsor-logos/logo-groupe-e.svg',
-  '/images/sponsor-logos/logo-idl.svg',
-  '/images/sponsor-logos/logo-la-mobiliere.svg',
-  '/images/sponsor-logos/logo-loro.svg',
-  '/images/sponsor-logos/logo-ville-fribourg.svg',
+  withBase('/images/sponsor-logos/logo-baiutti.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-bcf-fkb.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-bio26.png', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-dany-sport.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-fromagerie-arconciel.png', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-gfeller.png', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-groupe-e.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-idl.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-la-mobiliere.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-loro.svg', useRuntimeConfig().app.baseURL),
+  withBase('/images/sponsor-logos/logo-ville-fribourg.svg', useRuntimeConfig().app.baseURL),
 ];
 </script>
 
@@ -35,6 +37,8 @@ const logos = [
 .logo-scroller__tag-line {
   text-align: center;
   margin-block: 0.5em;
+  font-size: 3cqh;
+  font-weight: 700;
 }
 
 .logo-scroller__track {
@@ -47,8 +51,8 @@ const logos = [
 }
 
 .logo-scroller__logo {
-  max-width: 150px;
-  max-height: 100px;
+  max-width: 15.6cqw;
+  max-height: 10.4cqw;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -58,7 +62,7 @@ const logos = [
     transform: translateX(0);
   }
   to {
-    transform: translateX(-85%);
+    transform: translateX(-135.5%);
   }
 }
 </style>
