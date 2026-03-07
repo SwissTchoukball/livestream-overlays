@@ -24,7 +24,9 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
   height: 12cqh;
   margin-top: 5.1cqh;
   background-image: var(--gradient-score-box);
+  background-color: var(--background-color-score-box);
   border-radius: 1cqw;
+  border: var(--border-score-box);
   text-align: center;
 
   &:first-child {
@@ -40,5 +42,6 @@ const { hideLabel } = defineProps<{ hideLabel?: boolean }>();
   -webkit-text-fill-color: transparent;
   font-size: 9.3cqh;
   font-weight: 700;
+  line-height: 1.1;
 }
 </style>
