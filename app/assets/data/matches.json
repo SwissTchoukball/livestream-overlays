@@ -39,7 +39,7 @@
     "homeTeam": {
       "name": "Val-de-Ruz",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "deeppink"
+      "color": "blue"
     },
     "awayTeam": {
       "name": "Charmilles Snake",
@@ -60,7 +60,7 @@
     "awayTeam": {
       "name": "Val-de-Ruz",
       "logo": "https://cdn.leverade.com/thumbnails/AamIgR7YezHl.500x500.jpg",
-      "color": "deeppink"
+      "color": "blue"
     }
   },
   {
