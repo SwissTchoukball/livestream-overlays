@@ -17,7 +17,7 @@
 const route = useRoute();
 const { getMatchById } = useMatches();
 
-const match = computed(() => getMatchById(route.params.matchId as string));
+const match = computed(() => getMatchById(route.query.id as string));
 </script>
 
 <style scoped>

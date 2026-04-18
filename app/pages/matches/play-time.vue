@@ -43,7 +43,7 @@ import { withBase } from 'ufo';
 const route = useRoute();
 const { getMatchById } = useMatches();
 
-const match = computed(() => getMatchById(route.params.matchId as string));
+const match = computed(() => getMatchById(route.query.id as string));
 
 const cornerDecorationSrc = computed(() =>
   withBase(`/images/${match.value?.competition}/corner-visual.png`, useRuntimeConfig().app.baseURL)
