@@ -1,23 +1,36 @@
 <template>
-  <OverlayViewer :competition="match?.competition">
-    <FullScreenOverlay corner-logo-size="large" class="thumbnail" :competition="match?.competition">
+  <OverlayViewer :match="match">
+    <FullScreenOverlay corner-logo-size="large" class="thumbnail" :match="match">
       <div class="match-name">{{ match?.name }}</div>
 
       <TeamsWithLogo
         v-if="match && (match.homeTeam || match.awayTeam)"
-        :home-team="match?.homeTeam"
-        :away-team="match?.awayTeam"
+        :match="match"
         logos-only
+        class="thumbnail__teams"
       />
+      <ErrorOverlay v-if="error" :message="error.message" />
     </FullScreenOverlay>
   </OverlayViewer>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-const { getMatchById } = useMatches();
+import type Match from '~/models/match.model';
+import type { DataSource } from '~/types/dataSource';
 
-const match = computed(() => getMatchById(route.query.id as string));
+const route = useRoute();
+const { getMatch } = useMatches();
+
+const match = ref<Match>();
+const error = ref<Error>();
+
+(async () => {
+  try {
+    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
+  } catch (e: unknown) {
+    error.value = e as Error;
+  }
+})();
 </script>
 
 <style scoped>
@@ -46,11 +59,12 @@ const match = computed(() => getMatchById(route.query.id as string));
   .corner-logo {
     z-index: 2;
   }
+}
 
-  .teams {
-    top: 57%;
-    right: 0;
-    width: 70%;
-  }
+.thumbnail__teams {
+  position: absolute;
+  top: 57%;
+  right: 0;
+  width: 70%;
 }
 </style>

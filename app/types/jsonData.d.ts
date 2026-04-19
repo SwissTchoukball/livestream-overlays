@@ -1,10 +1,10 @@
-interface Team {
+export interface JsonTeam {
   name: string;
   logo: string;
   color: string;
 }
 
-interface Match {
+export interface JsonMatch {
   id: string;
   name: string;
   competition: string;

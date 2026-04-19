@@ -1,5 +1,5 @@
 <template>
-  <OverlayViewer :competition="match?.competition">
+  <OverlayViewer :match="match">
     <TransparentOverlay>
       <div class="corner-decoration">
         <img :src="cornerDecorationSrc" :onerror="`this.src='${cornerDecorationSrcFallback}'`" />
@@ -8,11 +8,11 @@
       <div class="play-time-score" :class="{ 'play-time-score--sets': match?.mode === 'sets' }">
         <div class="box box--teams">
           <div class="team">
-            <div class="team-color" :style="`color: ${match?.homeTeam?.color || 'white'}`">&#x25B6;</div>
+            <div class="team-color" :style="`color: ${homeTeamColor}`">&#x25B6;</div>
             <div class="team-name">{{ match?.homeTeam?.name || '' }}</div>
           </div>
           <div class="team">
-            <div class="team-color" :style="`color: ${match?.awayTeam?.color || 'white'}`">&#x25B6;</div>
+            <div class="team-color" :style="`color: ${awayTeamColor}`">&#x25B6;</div>
             <div class="team-name">{{ match?.awayTeam?.name || '' }}</div>
           </div>
         </div>
@@ -20,37 +20,71 @@
         <template v-if="match?.mode === 'sets'">
           <div class="set-label">Sets</div>
           <div class="box box--sets">
-            <div class="set-score">&nbsp;</div>
-            <div class="set-score">&nbsp;</div>
+            <div class="set-score">{{ setsScoreHome }}</div>
+            <div class="set-score">{{ setsScoreAway }}</div>
           </div>
         </template>
 
         <div class="point-label">Points</div>
         <div class="box box--points">
-          <div class="point-score">&nbsp;</div>
-          <div class="point-score">&nbsp;</div>
+          <div class="point-score">{{ pointsScoreHome }}</div>
+          <div class="point-score">{{ pointsScoreAway }}</div>
         </div>
 
         <div v-if="match?.mode === 'time'" class="box box--time"></div>
       </div>
+      <ErrorOverlay v-if="error" :message="error.message" />
     </TransparentOverlay>
   </OverlayViewer>
 </template>
 
 <script lang="ts" setup>
 import { withBase } from 'ufo';
+import type Match from '~/models/match.model';
+import type { DataSource } from '~/types/dataSource';
 
 const route = useRoute();
-const { getMatchById } = useMatches();
+const { getMatch } = useMatches();
 
-const match = computed(() => getMatchById(route.query.id as string));
+const match = ref<Match>();
+const error = ref<Error>();
+
+(async () => {
+  try {
+    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
+  } catch (e: unknown) {
+    error.value = e as Error;
+  }
+})();
+
+const setsScoreHome = computed(() => match.value?.resultHome ?? ' ');
+const setsScoreAway = computed(() => match.value?.resultAway ?? ' ');
+const pointsScoreHome = computed(() =>
+  match.value?.mode === 'time' ? match.value?.resultHome ?? ' ' : match.value?.ongoingOrLastPeriod?.scoreHome ?? ' '
+);
+const pointsScoreAway = computed(() =>
+  match.value?.mode === 'time' ? match.value?.resultAway ?? ' ' : match.value?.ongoingOrLastPeriod?.scoreAway ?? ' '
+);
+const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match.value?.homeTeam?.color ?? '#fff');
+const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match.value?.awayTeam?.color ?? '#fff');
 
 const cornerDecorationSrc = computed(() =>
   withBase(`/images/${match.value?.competition}/corner-visual.png`, useRuntimeConfig().app.baseURL)
 );
 const cornerDecorationSrcFallback = computed(() =>
-  withBase('/images/corner-visual.png', useRuntimeConfig().app.baseURL)
+  withBase('/images/default/corner-visual.png', useRuntimeConfig().app.baseURL)
 );
+
+function validateColor(colorQuery: string | (string | null)[] | undefined | null): string | undefined {
+  const color = Array.isArray(colorQuery) ? colorQuery[0] : colorQuery;
+  if (color?.match(/^[0-9A-Fa-f]{6}$/)) {
+    return `#${color}`;
+  }
+  if (color?.match(/^[a-zA-Z]+$/)) {
+    return color;
+  }
+  return undefined;
+}
 </script>
 
 <style scoped>
@@ -116,19 +150,9 @@ const cornerDecorationSrcFallback = computed(() =>
 
 .box--teams {
   grid-area: teams;
-  width: 19.3cqw;
-  background-color: white;
-}
 
-.box--sets {
-  grid-area: sets;
-  width: 2.6cqw;
-  background-image: var(--gradient-set-box);
-}
-
-.box--points {
-  grid-area: points;
-  width: 2.6cqw;
+  /* TODO: Set min-width to 0 so that it takes the less space possible */
+  min-width: 19.3cqw;
   background-color: white;
 }
 
@@ -146,6 +170,42 @@ const cornerDecorationSrcFallback = computed(() =>
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.05em;
+}
+
+.box--sets,
+.box--points {
+  min-width: 2.6cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.box--sets {
+  grid-area: sets;
+  background-image: var(--gradient-set-box);
+}
+
+.box--points {
+  grid-area: points;
+  background-color: white;
+}
+
+.set-score,
+.point-score {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.2em;
+
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.set-score {
+  color: var(--foreground-color-set-box);
+  font-size: 1.5em;
 }
 
 .box--time {

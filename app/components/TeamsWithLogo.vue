@@ -2,29 +2,30 @@
   <div class="teams" :class="{ 'teams--with-score-box': withScoreBox, 'teams--logos-only': logosOnly }">
     <div class="team team--home">
       <div class="team-logo">
-        <img v-if="homeTeam" :src="homeTeam.logo" />
+        <img v-if="match?.homeTeam" :src="match.homeTeam?.logo" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
-      <div v-if="!logosOnly" class="team-name">{{ homeTeam?.name || '' }}</div>
+      <div v-if="!logosOnly" class="team-name">{{ match?.homeTeam?.name || '' }}</div>
     </div>
 
-    <ScoreBox v-if="withScoreBox" class="teams__score-box" />
+    <ScoreBox v-if="withScoreBox" :match="match" class="teams__score-box" />
     <div v-else class="separator">×</div>
 
     <div class="team team--away">
       <div class="team-logo">
-        <img v-if="awayTeam" :src="awayTeam.logo" />
+        <img v-if="match?.awayTeam" :src="match.awayTeam.logo" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
-      <div v-if="!logosOnly" class="team-name">{{ awayTeam?.name || '' }}</div>
+      <div v-if="!logosOnly" class="team-name">{{ match?.awayTeam?.name || '' }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const { homeTeam, awayTeam, withScoreBox } = defineProps<{
-  homeTeam: Team | null;
-  awayTeam: Team | null;
+import type Match from '~/models/match.model';
+
+const { match = undefined, withScoreBox } = defineProps<{
+  match?: Match;
   withScoreBox?: boolean;
   logosOnly?: boolean;
 }>();
@@ -32,10 +33,6 @@ const { homeTeam, awayTeam, withScoreBox } = defineProps<{
 
 <style scoped>
 .teams {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-
   display: flex;
   align-items: flex-start;
   justify-content: center;

@@ -1,24 +1,43 @@
 <template>
-  <OverlayViewer :competition="match?.competition">
-    <FullScreenOverlay :competition="match?.competition">
+  <OverlayViewer :match="match">
+    <FullScreenOverlay :match="match">
       <div class="upcoming-message">
         <div class="upcoming-message-text">Dans quelques instants :</div>
         <div class="upcoming-message-match-name">{{ match?.name }}</div>
       </div>
 
-      <TeamsWithLogo v-if="match" :home-team="match?.homeTeam" :away-team="match?.awayTeam" />
+      <TeamsWithLogo v-if="match" :match="match" class="pre-game__teams" />
+      <ErrorOverlay v-if="error" :message="error.message" />
     </FullScreenOverlay>
   </OverlayViewer>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-const { getMatchById } = useMatches();
+import type Match from '~/models/match.model';
+import type { DataSource } from '~/types/dataSource';
 
-const match = computed(() => getMatchById(route.query.id as string));
+const route = useRoute();
+const { getMatch } = useMatches();
+
+const match = ref<Match>();
+const error = ref<Error>();
+
+(async () => {
+  try {
+    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
+  } catch (e: unknown) {
+    error.value = e as Error;
+  }
+})();
 </script>
 
 <style scoped>
+.pre-game__teams {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
 .upcoming-message {
   position: absolute;
   top: 25%;

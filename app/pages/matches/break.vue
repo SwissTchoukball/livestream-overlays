@@ -1,8 +1,8 @@
 <template>
-  <OverlayViewer :competition="match?.competition">
+  <OverlayViewer :match="match">
     <TransparentOverlay>
-      <LogoScroller class="logo-scroller" />
-      <CornerLogo size="small" :competition="match?.competition" />
+      <!-- <LogoScroller class="logo-scroller" /> -->
+      <CornerLogo size="small" :match="match" />
       <div class="next-set-box">Prochain set :</div>
 
       <div class="teams">
@@ -10,21 +10,36 @@
           <div class="team-name">{{ match?.homeTeam?.name || '' }}</div>
         </div>
 
-        <ScoreBox hide-label />
+        <ScoreBox hide-label :match="match" class="teams__score-box" />
 
         <div class="team team--away">
           <div class="team-name">{{ match?.awayTeam?.name || '' }}</div>
         </div>
+
+        <FinishedPeriods :match="match" class="teams__periods" />
       </div>
+      <ErrorOverlay v-if="error" :message="error.message" />
     </TransparentOverlay>
   </OverlayViewer>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-const { getMatchById } = useMatches();
+import type Match from '~/models/match.model';
+import type { DataSource } from '~/types/dataSource';
 
-const match = computed(() => getMatchById(route.query.id as string));
+const route = useRoute();
+const { getMatch } = useMatches();
+
+const match = ref<Match>();
+const error = ref<Error>();
+
+(async () => {
+  try {
+    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
+  } catch (e: unknown) {
+    error.value = e as Error;
+  }
+})();
 </script>
 
 <style scoped>
@@ -52,15 +67,18 @@ const match = computed(() => getMatchById(route.query.id as string));
 
 .teams {
   position: absolute;
-  top: 71.5cqh;
+  top: 65cqh;
   width: 100%;
   min-height: 18.5cqh;
   background-color: rgba(255, 255, 255, 0.7);
   padding-block: 2.3cqh;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas:
+    'team-home score-box team-away'
+    'periods periods periods';
   align-items: center;
-  justify-content: center;
   gap: 3.6cqw;
 }
 
@@ -73,11 +91,13 @@ const match = computed(() => getMatchById(route.query.id as string));
   gap: 0.5cqw;
 
   &.team--home {
+    grid-area: team-home;
     align-items: flex-end;
     padding-left: 1.5cqw;
   }
 
   &.team--away {
+    grid-area: team-away;
     align-items: flex-start;
     padding-right: 1.5cqw;
   }
@@ -91,5 +111,13 @@ const match = computed(() => getMatchById(route.query.id as string));
   .team--home & {
     text-align: right;
   }
+}
+
+.teams__score-box {
+  grid-area: score-box;
+}
+
+.teams__periods {
+  grid-area: periods;
 }
 </style>

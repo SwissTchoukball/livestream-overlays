@@ -1,8 +1,8 @@
 :root {
-  --gradient-score-box: none;
-  --gradient-score-separator: linear-gradient(to bottom, #000, #474747);
+  --gradient-score-box: linear-gradient(to top right, #cf2f28, #e5989b);
+  --gradient-score-separator: linear-gradient(to bottom, #fff, #ccc);
   --gradient-set-box: linear-gradient(to top right, #cf2f28, #e5989b);
-  --border-score-box: 4px solid #cf2f28;
+  --foreground-color-set-box: #fff;
   --background-color-score-box: #fff;
 }
 
@@ -10,6 +10,6 @@
   --gradient-score-box: linear-gradient(to top right, #3e2169, #008b3e);
   --gradient-score-separator: linear-gradient(to bottom, #fff, #ccc);
   --gradient-set-box: linear-gradient(to top right, #21324a, #336f4b);
-  --border-score-box: none;
+  --foreground-color-set-box: #fff;
   --background-color-score-box: auto;
 }
