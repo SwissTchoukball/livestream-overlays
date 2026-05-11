@@ -19,14 +19,14 @@ import type Match from '~/models/match.model';
 import type { DataSource } from '~/types/dataSource';
 
 const route = useRoute();
-const { getMatch } = useMatches();
+const { getMatch } = useMatch(route.query.id as string, route.query.source as DataSource);
 
 const match = ref<Match>();
 const error = ref<Error>();
 
 (async () => {
   try {
-    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
+    match.value = await getMatch();
   } catch (e: unknown) {
     error.value = e as Error;
   }

@@ -45,7 +45,7 @@ export default class Match {
       // this.name = clupikMatch.name;
 
       this.competition = this.getCompetitionFromTournament(clupikMatch.round.group.tournament);
-      this.mode = clupikMatch.round.group.tournament.scoringcriterion.result_type === 'periods_wins' ? 'sets' : 'time';
+      this.mode = clupikMatch.round.group.tournament.scoringcriterion?.result_type === 'periods_wins' ? 'sets' : 'time';
       this.startDate = parseClupikDate(clupikMatch.datetime);
       const rawHomeTeam = clupikMatch.teams.find((team) => team.id === clupikMatch.meta.home_team);
       this.homeTeam = rawHomeTeam ? new Team(rawHomeTeam, source) : null;
@@ -62,7 +62,7 @@ export default class Match {
   }
 
   private getCompetitionFromTournament(tournament: ClupikTournament): string | undefined {
-    switch (tournament.scoringcriterion.id) {
+    switch (tournament.scoringcriterion?.id) {
       case '36933': // 3×20
       case '47868': // 3×15
         if (tournament.gender === 'female') {

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-const { jsonMatches: matches } = useMatches();
+const { jsonMatches: matches } = useJsonMatches();
 </script>
 
 <style scoped>

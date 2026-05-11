@@ -18,7 +18,7 @@
 
         <FinishedPeriods :match="match" class="teams__periods" />
       </div>
-      <ErrorOverlay v-if="error" :message="error.message" />
+      <ErrorOverlay v-if="matchLoadingError" :message="matchLoadingError.message" />
     </TransparentOverlay>
   </OverlayViewer>
 </template>
@@ -28,18 +28,19 @@ import type Match from '~/models/match.model';
 import type { DataSource } from '~/types/dataSource';
 
 const route = useRoute();
-const { getMatch } = useMatches();
+const { getMatch, matchLoadingError } = useMatch(route.query.id as string, route.query.source as DataSource);
 
 const match = ref<Match>();
-const error = ref<Error>();
 
-(async () => {
-  try {
-    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
-  } catch (e: unknown) {
-    error.value = e as Error;
+match.value = await getMatch();
+
+onMounted(async () => {
+  if (route.query.source !== 'json') {
+    setInterval(async () => {
+      match.value = await getMatch();
+    }, 5000);
   }
-})();
+});
 </script>
 
 <style scoped>

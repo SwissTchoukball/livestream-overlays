@@ -194,7 +194,7 @@ export interface ClupikTournament extends ClupikTournamentAttributes {
   delegation: null;
   discipline: { type: string; id: string };
   manager: { type: string; id: string };
-  scoringcriterion: ClupikApiScoringCriterionAttributes;
+  scoringcriterion: ClupikApiScoringCriterionAttributes | null;
   season: { type: string; id: string };
   relationshipNames: string[];
 }

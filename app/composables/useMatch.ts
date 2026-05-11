@@ -1,19 +1,13 @@
-import jsonMatchesData from '@/assets/data/matches.json';
 import Match from '~/models/match.model';
-import type { JsonMatch } from '~/types/jsonData';
 import type { DataSource } from '~/types/dataSource';
 
-export function useMatches() {
+export function useMatch(id: string, source: DataSource) {
   const { getClupikMatch } = useClupikMatch();
+  const { jsonMatches } = useJsonMatches();
 
-  const jsonMatches = ref<JsonMatch[]>(
-    jsonMatchesData.map((match) => ({
-      ...match,
-      mode: ['sets', 'time'].includes(match.mode) ? (match.mode as 'sets' | 'time') : 'time',
-    }))
-  );
+  const matchLoadingError = ref<Error>();
 
-  async function getMatch(id: string, source: DataSource): Promise<Match> {
+  async function getMatch(): Promise<Match | undefined> {
     let match: Match | undefined;
 
     if (source === 'json') {
@@ -31,14 +25,15 @@ export function useMatches() {
     }
 
     if (!match) {
-      throw new Error(`Match “${id}” not found in source “${source}”`);
+      matchLoadingError.value = new Error(`Match “${id}” not found in source “${source}”`);
+      return;
     }
 
     return match;
   }
 
   return {
-    jsonMatches,
     getMatch,
+    matchLoadingError,
   };
 }

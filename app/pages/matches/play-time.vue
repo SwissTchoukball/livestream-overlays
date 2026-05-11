@@ -33,7 +33,7 @@
 
         <div v-if="match?.mode === 'time'" class="box box--time"></div>
       </div>
-      <ErrorOverlay v-if="error" :message="error.message" />
+      <ErrorOverlay v-if="matchLoadingError" :message="matchLoadingError.message" />
     </TransparentOverlay>
   </OverlayViewer>
 </template>
@@ -44,35 +44,40 @@ import type Match from '~/models/match.model';
 import type { DataSource } from '~/types/dataSource';
 
 const route = useRoute();
-const { getMatch } = useMatches();
+const { getMatch, matchLoadingError } = useMatch(route.query.id as string, route.query.source as DataSource);
 
 const match = ref<Match>();
-const error = ref<Error>();
 
-(async () => {
-  try {
-    match.value = await getMatch(route.query.id as string, route.query.source as DataSource);
-  } catch (e: unknown) {
-    error.value = e as Error;
+match.value = await getMatch();
+
+onMounted(async () => {
+  if (route.query.source !== 'json') {
+    setInterval(async () => {
+      match.value = await getMatch();
+    }, 3000);
   }
-})();
+});
 
 const setsScoreHome = computed(() => match.value?.resultHome ?? ' ');
 const setsScoreAway = computed(() => match.value?.resultAway ?? ' ');
 const pointsScoreHome = computed(() =>
-  match.value?.mode === 'time' ? match.value?.resultHome ?? ' ' : match.value?.ongoingOrLastPeriod?.scoreHome ?? ' '
+  match.value?.mode === 'time'
+    ? (match.value?.resultHome ?? ' ')
+    : (match.value?.ongoingOrLastPeriod?.scoreHome ?? ' '),
 );
 const pointsScoreAway = computed(() =>
-  match.value?.mode === 'time' ? match.value?.resultAway ?? ' ' : match.value?.ongoingOrLastPeriod?.scoreAway ?? ' '
+  match.value?.mode === 'time'
+    ? (match.value?.resultAway ?? ' ')
+    : (match.value?.ongoingOrLastPeriod?.scoreAway ?? ' '),
 );
 const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match.value?.homeTeam?.color ?? '#fff');
 const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match.value?.awayTeam?.color ?? '#fff');
 
 const cornerDecorationSrc = computed(() =>
-  withBase(`/images/${match.value?.competition}/corner-visual.png`, useRuntimeConfig().app.baseURL)
+  withBase(`/images/${match.value?.competition}/corner-visual.png`, useRuntimeConfig().app.baseURL),
 );
 const cornerDecorationSrcFallback = computed(() =>
-  withBase('/images/default/corner-visual.png', useRuntimeConfig().app.baseURL)
+  withBase('/images/default/corner-visual.png', useRuntimeConfig().app.baseURL),
 );
 
 function validateColor(colorQuery: string | (string | null)[] | undefined | null): string | undefined {
