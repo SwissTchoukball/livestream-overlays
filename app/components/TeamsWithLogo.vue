@@ -2,7 +2,7 @@
   <div class="teams" :class="{ 'teams--with-score-box': withScoreBox, 'teams--logos-only': logosOnly }">
     <div class="team team--home">
       <div class="team-logo">
-        <img v-if="match?.homeTeam" :src="match.homeTeam?.logo" />
+        <img v-if="match?.homeTeam?.logoUrl" :src="match.homeTeam.logoUrl" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
       <div v-if="!logosOnly" class="team-name">{{ match?.homeTeam?.name || '' }}</div>
@@ -13,7 +13,7 @@
 
     <div class="team team--away">
       <div class="team-logo">
-        <img v-if="match?.awayTeam" :src="match.awayTeam.logo" />
+        <img v-if="match?.awayTeam?.logoUrl" :src="match.awayTeam.logoUrl" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
       <div v-if="!logosOnly" class="team-name">{{ match?.awayTeam?.name || '' }}</div>
