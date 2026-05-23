@@ -51,10 +51,10 @@ async function generateBase64Image() {
 
   /* background-color: limegreen; */
 
-  @media (min-resolution: 2x) {
+  /* @media (min-resolution: 2x) {
     width: 960px;
     height: 540px;
-  }
+  } */
 }
 
 .image-download-button {
