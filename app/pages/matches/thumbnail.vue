@@ -1,7 +1,10 @@
 <template>
   <OverlayViewer :match="match">
     <FullScreenOverlay corner-logo-size="large" class="thumbnail" :match="match">
-      <div class="match-name">{{ match?.name }}</div>
+      <div class="match-name" :data-competition="match?.competition">
+        <div class="match-name-mask"></div>
+        {{ match?.name }}
+      </div>
 
       <TeamsWithLogo
         v-if="match && (match.homeTeam || match.awayTeam)"
@@ -36,14 +39,10 @@ const error = ref<Error>();
 <style scoped>
 .match-name {
   position: absolute;
-  top: 18%;
+  top: 14%;
   right: 3%;
-  width: 46cqw;
-  height: 2lh;
-
-  display: flex;
-  align-items: end;
-  justify-content: end;
+  width: 60cqw;
+  height: 3lh;
 
   text-transform: uppercase;
   text-align: right;
@@ -51,6 +50,22 @@ const error = ref<Error>();
   font-weight: 700;
   font-size: 14cqh;
   letter-spacing: -0.02em;
+  hyphens: auto;
+
+  /* Not really happy of that hack. TODO: Figure out a more sustainable solution. */
+  &[data-competition='promotions-relegations'] {
+    font-size: 10cqh;
+  }
+}
+
+.match-name-mask {
+  float: left;
+  height: 100%;
+  width: 28cqw;
+
+  /* Shape that fits the border of the corner visual */
+  clip-path: polygon(0 0, 100% 0, 3% 100%, 0 100%);
+  shape-outside: polygon(0 0, 100% 0, 3% 100%, 0 100%);
 }
 </style>
 

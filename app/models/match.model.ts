@@ -42,7 +42,7 @@ export default class Match {
       // console.log(clupikMatch.teams.map((team) => team.meta.avatar));
 
       this.id = clupikMatch.id;
-      // this.name = clupikMatch.name;
+      this.name = clupikMatch.faceoff?.round?.name || '';
 
       this.competition = this.getCompetitionFromTournament(clupikMatch.round.group.tournament);
       this.mode = clupikMatch.round.group.tournament.scoringcriterion?.result_type === 'periods_wins' ? 'sets' : 'time';
