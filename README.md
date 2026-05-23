@@ -22,7 +22,7 @@ npm run dev
 
 ## Production
 
-Build the application for production:
+Build the SPA for production:
 
 ```bash
 npm run generate
