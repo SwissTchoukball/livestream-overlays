@@ -3,7 +3,6 @@
     <TransparentOverlay>
       <!-- <LogoScroller class="logo-scroller" /> -->
       <CornerLogo size="small" :match="match" />
-      <div class="next-set-box">Prochain set :</div>
 
       <div class="teams">
         <div class="team team--home">
@@ -44,21 +43,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.next-set-box {
-  position: absolute;
-  top: 4%;
-  right: 4%;
-  text-transform: uppercase;
-  text-align: right;
-  line-height: 1;
-  font-size: 6cqh;
-  font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 1cqw;
-  padding-bottom: 10.2cqh;
-  border-radius: 1cqh;
-}
-
 .logo-scroller {
   position: absolute;
   top: 30cqh;
