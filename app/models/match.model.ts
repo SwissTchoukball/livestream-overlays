@@ -77,6 +77,9 @@ export default class Match {
         if (tournament.name.includes('Ligue C')) {
           return 'league-c';
         }
+        if (tournament.name.includes('Promotions/relégations')) {
+          return 'promotions-relegations';
+        }
         return;
       case '39672':
         return 'swiss-cup';
@@ -153,6 +156,8 @@ export default class Match {
         return `Championnat\nLigue B\n${this.seasonShortDisplayName}`;
       case 'league-c':
         return `Championnat\nLigue C\n${this.seasonShortDisplayName}`;
+      case 'promotions-relegations':
+        return `Promotions/\nrelégations\n${this.seasonEndYear}`;
       case 'junior-swiss-championship':
         return `Championnat\njunior\n${this.seasonShortDisplayName}`;
       case 'swiss-cup':
