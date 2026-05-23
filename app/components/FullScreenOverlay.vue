@@ -1,14 +1,16 @@
 <template>
   <div class="full-screen-overlay">
-    <CornerLogo :size="cornerLogoSize" :competition="competition" />
+    <CornerLogo :size="cornerLogoSize" :match="match" />
     <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
-const { cornerLogoSize = 'small', competition = undefined } = defineProps<{
+import type Match from '~/models/match.model';
+
+const { cornerLogoSize = 'small', match = undefined } = defineProps<{
   cornerLogoSize?: 'small' | 'large';
-  competition?: string;
+  match?: Match;
 }>();
 </script>
 

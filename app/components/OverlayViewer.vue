@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay-viewer" :class="`theme-${competition}`">
+  <div class="overlay-viewer" :class="`theme-${match?.editionSlug}`">
     <slot />
   </div>
   <button class="image-download-button" :disabled="generatingImage" @click="generateBase64Image">
@@ -10,8 +10,9 @@
 
 <script lang="ts" setup>
 import { snapdom } from '@zumer/snapdom';
+import type Match from '~/models/match.model';
 
-const { competition = undefined } = defineProps<{ competition?: string }>();
+const { match = undefined } = defineProps<{ match?: Match }>();
 
 const generatingImage = ref(false);
 
