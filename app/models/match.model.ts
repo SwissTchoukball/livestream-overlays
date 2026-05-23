@@ -30,8 +30,8 @@ export default class Match {
       this.name = jsonMatch.name;
       this.competition = jsonMatch.competition;
       this.mode = jsonMatch.mode;
-      this.homeTeam = new Team(jsonMatch.homeTeam, source);
-      this.awayTeam = new Team(jsonMatch.awayTeam, source);
+      this.homeTeam = jsonMatch.homeTeam ? new Team(jsonMatch.homeTeam, source) : null;
+      this.awayTeam = jsonMatch.awayTeam ? new Team(jsonMatch.awayTeam, source) : null;
     }
 
     if (source === 'clupik') {

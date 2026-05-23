@@ -9,6 +9,6 @@ export interface JsonMatch {
   name: string;
   competition: string;
   mode: 'sets' | 'time';
-  homeTeam: Team | null;
-  awayTeam: Team | null;
+  homeTeam: JsonTeam | null;
+  awayTeam: JsonTeam | null;
 }
