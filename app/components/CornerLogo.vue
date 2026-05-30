@@ -24,10 +24,8 @@ const assetsFolder = computed(() => {
   return 'default';
 });
 
-// TODO: Get rid of all corner logos and keep only visual (without text)
-// const logoSrc = computed(() => withBase(`/images/${competition}/corner-logo.png`, useRuntimeConfig().app.baseURL));
 const logoSrc = computed(() =>
-  withBase(`/images/${assetsFolder.value}/corner-visual.png`, useRuntimeConfig().app.baseURL)
+  withBase(`/images/${assetsFolder.value}/corner-visual.png`, useRuntimeConfig().app.baseURL),
 );
 const logoSrcFallback = computed(() => withBase('/images/default/corner-visual.png', useRuntimeConfig().app.baseURL));
 </script>
