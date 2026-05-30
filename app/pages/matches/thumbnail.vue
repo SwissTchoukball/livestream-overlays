@@ -1,6 +1,6 @@
 <template>
   <OverlayViewer :match="match">
-    <FullScreenOverlay corner-logo-size="large" class="thumbnail" :match="match">
+    <FullScreenOverlay corner-visual-size="large" class="thumbnail" :match="match">
       <div class="match-name" :data-competition="match?.competition">
         <div class="match-name-mask"></div>
         {{ match?.name }}
@@ -71,7 +71,7 @@ const error = ref<Error>();
 
 <style>
 .thumbnail {
-  .corner-logo {
+  .corner-visual {
     z-index: 2;
   }
 }

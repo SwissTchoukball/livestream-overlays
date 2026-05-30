@@ -50,6 +50,7 @@ onMounted(async () => {
 
 .end-game__teams {
   margin-top: 20cqh;
+  width: 100%;
 }
 
 .end-game__periods {

@@ -2,7 +2,7 @@
   <OverlayViewer :match="match">
     <TransparentOverlay>
       <!-- <LogoScroller class="logo-scroller" /> -->
-      <CornerLogo size="small" :match="match" />
+      <CornerVisual size="small" :match="match" />
 
       <div class="teams">
         <div class="team team--home">

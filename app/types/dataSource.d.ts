@@ -1,1 +1,1 @@
-export type DataSource = 'json' | 'clupik';
+export type DataSource = 'json' | 'clupik' | 'tchouk.net';

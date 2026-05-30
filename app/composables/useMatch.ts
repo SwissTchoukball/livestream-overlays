@@ -4,6 +4,7 @@ import type { DataSource } from '~/types/dataSource';
 export function useMatch(id: string, source: DataSource) {
   const { getClupikMatch } = useClupikMatch();
   const { jsonMatches } = useJsonMatches();
+  const { getTchoukDotNetMatch } = useTchoukDotNetMatch();
 
   const matchLoadingError = ref<Error>();
 
@@ -22,6 +23,15 @@ export function useMatch(id: string, source: DataSource) {
       if (clupikMatch) {
         match = new Match(clupikMatch, 'clupik');
       }
+    }
+
+    if (source === 'tchouk.net') {
+      const tchoukDotNetMatch = await getTchoukDotNetMatch(id);
+      console.log({ tchoukDotNetMatch });
+      if (tchoukDotNetMatch) {
+        match = new Match(tchoukDotNetMatch, 'tchouk.net');
+      }
+      console.log({ match });
     }
 
     if (!match) {

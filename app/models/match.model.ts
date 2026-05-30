@@ -2,12 +2,16 @@ import type { DataSource } from '~/types/dataSource';
 import Team from './team.model';
 import type { JsonMatch } from '~/types/jsonData';
 import type { ClupikMatch, ClupikTournament } from '~/types/clupik';
+import type { TchoukNetCompetitionPhase, TchoukNetGame } from '~/types/tchoukDotNet';
 
 export default class Match {
   id!: string;
   name!: string;
   competition: string | undefined;
   mode!: 'sets' | 'time';
+  competitionHasLogo: boolean = false;
+  isCountryCompetition: boolean = false;
+  assetsFolder: string = 'default';
   startDate: Date | undefined;
   homeTeam!: Team | null;
   awayTeam!: Team | null;
@@ -20,7 +24,7 @@ export default class Match {
   }[] = [];
   source!: DataSource;
 
-  constructor(data: JsonMatch | ClupikMatch, source: DataSource) {
+  constructor(data: JsonMatch | ClupikMatch | TchoukNetGame, source: DataSource) {
     this.source = source;
 
     if (source === 'json') {
@@ -44,7 +48,7 @@ export default class Match {
       this.id = clupikMatch.id;
       this.name = clupikMatch.faceoff?.round?.name || '';
 
-      this.competition = this.getCompetitionFromTournament(clupikMatch.round.group.tournament);
+      this.competition = this.getCompetitionFromClupikTournament(clupikMatch.round.group.tournament);
       this.mode = clupikMatch.round.group.tournament.scoringcriterion?.result_type === 'periods_wins' ? 'sets' : 'time';
       this.startDate = parseClupikDate(clupikMatch.datetime);
       const rawHomeTeam = clupikMatch.teams.find((team) => team.id === clupikMatch.meta.home_team);
@@ -59,9 +63,36 @@ export default class Match {
         finished: period.finished,
       }));
     }
+
+    if (source === 'tchouk.net') {
+      const tchoukDotNetMatch = data as TchoukNetGame;
+
+      this.id = tchoukDotNetMatch.id;
+      this.name = tchoukDotNetMatch.name || '';
+      this.competition = this.getCompetitionFromTchoukDotNetCompetitionPhase(tchoukDotNetMatch.competition_phase);
+      this.mode = 'time';
+      this.startDate = tchoukDotNetMatch.start_at ? new Date(tchoukDotNetMatch.start_at) : undefined;
+      this.homeTeam = tchoukDotNetMatch.selection_a ? new Team(tchoukDotNetMatch.selection_a, source) : null;
+      this.awayTeam = tchoukDotNetMatch.selection_b ? new Team(tchoukDotNetMatch.selection_b, source) : null;
+      this.resultHome = tchoukDotNetMatch.selection_a?.total_points ?? null;
+      this.resultAway = tchoukDotNetMatch.selection_b?.total_points ?? null;
+      this.periods = this.getPeriodsFromTchoukDotNetGame(tchoukDotNetMatch);
+    }
+
+    this.competitionHasLogo = this.competition === 'euro-2026';
+    if (this.competition === 'swiss-cup') {
+      this.assetsFolder = this.editionSlug ?? 'default';
+    }
+    if (this.competition === 'euro-2026') {
+      this.assetsFolder = 'euro-2026';
+      this.isCountryCompetition = true;
+    }
+    if (this.competition === 'geneva-indoors') {
+      this.isCountryCompetition = true;
+    }
   }
 
-  private getCompetitionFromTournament(tournament: ClupikTournament): string | undefined {
+  private getCompetitionFromClupikTournament(tournament: ClupikTournament): string | undefined {
     switch (tournament.scoringcriterion?.id) {
       case '36933': // 3×20
       case '47868': // 3×15
@@ -92,6 +123,43 @@ export default class Match {
       case '42494': // 2×10
         return 'women-swiss-championship';
     }
+  }
+
+  private getCompetitionFromTchoukDotNetCompetitionPhase(
+    competitionPhase?: TchoukNetCompetitionPhase,
+  ): string | undefined {
+    switch (competitionPhase?.competition?.event?.name) {
+      case 'Euro 2026':
+        return 'euro-2026';
+    }
+    if (competitionPhase?.competition?.event?.name.includes('Geneva Indoors')) {
+      return 'geneva-indoors';
+    }
+  }
+
+  private getPeriodsFromTchoukDotNetGame(game: TchoukNetGame): Match['periods'] {
+    const scores = [];
+
+    const periodCounts = [
+      3,
+      Object.keys(game.selection_a?.period_points || {}).length || 0,
+      Object.keys(game.selection_b?.period_points || {}).length || 0,
+    ];
+    const periodCount = Math.max(...periodCounts);
+
+    let score_a, score_b;
+    for (let i = 1; i <= periodCount; i++) {
+      const period = i.toString() as '1' | '2' | '3';
+      score_a = game?.selection_a?.period_points ? game.selection_a.period_points[period] || 0 : 0;
+      score_b = game?.selection_b?.period_points ? game.selection_b.period_points[period] || 0 : 0;
+
+      scores.push({
+        scoreHome: score_a,
+        scoreAway: score_b,
+        finished: true,
+      });
+    }
+    return scores;
   }
 
   get ongoingOrLastPeriod() {
@@ -162,6 +230,9 @@ export default class Match {
         return `Championnat\njunior\n${this.seasonShortDisplayName}`;
       case 'swiss-cup':
         return `Coupe suisse\nTchoukball\n${this.seasonEndYear}`;
+      case 'euro-2026':
+        // We don't display a text above the corner logo for Euro 2026
+        return;
     }
     console.warn('No corner display name defined for competition', this.competition);
     return;

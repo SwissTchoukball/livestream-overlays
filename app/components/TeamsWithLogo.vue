@@ -3,6 +3,7 @@
     <div class="team team--home">
       <div class="team-logo">
         <img v-if="match?.homeTeam?.logoUrl" :src="match.homeTeam.logoUrl" />
+        <TeamFlag v-else-if="match?.isCountryCompetition && match?.homeTeam" :team="match.homeTeam" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
       <div v-if="!logosOnly" class="team-name">{{ match?.homeTeam?.name || '' }}</div>
@@ -14,6 +15,7 @@
     <div class="team team--away">
       <div class="team-logo">
         <img v-if="match?.awayTeam?.logoUrl" :src="match.awayTeam.logoUrl" />
+        <TeamFlag v-else-if="match?.isCountryCompetition && match?.awayTeam" :team="match.awayTeam" />
         <UnknownTeamLogo v-else class="team-logo-placeholder" />
       </div>
       <div v-if="!logosOnly" class="team-name">{{ match?.awayTeam?.name || '' }}</div>
@@ -72,13 +74,17 @@ const { match = undefined, withScoreBox } = defineProps<{
   }
 }
 
-.team-logo img,
-.team-logo-placeholder {
+.team-logo {
   height: 23cqh;
 
   .teams--logos-only & {
     height: 37cqh;
   }
+}
+
+.team-logo img,
+.team-logo-placeholder {
+  height: 100%;
 }
 
 .separator {
