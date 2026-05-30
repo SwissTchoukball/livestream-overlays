@@ -58,17 +58,21 @@ onMounted(async () => {
   }
 });
 
-const setsScoreHome = computed(() => match.value?.resultHome ?? ' ');
-const setsScoreAway = computed(() => match.value?.resultAway ?? ' ');
+const setsScoreHome = computed(() => (route.query.source === 'json' ? ' ' : (match.value?.resultHome ?? '0')));
+const setsScoreAway = computed(() => (route.query.source === 'json' ? ' ' : (match.value?.resultAway ?? '0')));
 const pointsScoreHome = computed(() =>
-  match.value?.mode === 'time'
-    ? (match.value?.resultHome ?? ' ')
-    : (match.value?.ongoingOrLastPeriod?.scoreHome ?? ' '),
+  route.query.source === 'json'
+    ? ' '
+    : match.value?.mode === 'time'
+      ? (match.value?.resultHome ?? '0')
+      : (match.value?.ongoingOrLastPeriod?.scoreHome ?? '0'),
 );
 const pointsScoreAway = computed(() =>
-  match.value?.mode === 'time'
-    ? (match.value?.resultAway ?? ' ')
-    : (match.value?.ongoingOrLastPeriod?.scoreAway ?? ' '),
+  route.query.source === 'json'
+    ? ' '
+    : match.value?.mode === 'time'
+      ? (match.value?.resultAway ?? '0')
+      : (match.value?.ongoingOrLastPeriod?.scoreAway ?? '0'),
 );
 const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match.value?.homeTeam?.color ?? '#fff');
 const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match.value?.awayTeam?.color ?? '#fff');
