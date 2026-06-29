@@ -1,15 +1,17 @@
 import type { ClupikTeam } from '~/types/clupik';
 import type { DataSource } from '~/types/dataSource';
 import type { JsonTeam } from '~/types/jsonData';
+import type { TchoukNetGameTeam } from '~/types/tchoukDotNet';
 
 export default class Team {
   id!: string | undefined;
   name!: string;
-  logo!: string;
+  logo: string | null = null;
   color: string = 'white';
   source!: DataSource;
+  countryCode: { ioc?: string; iso2?: string } = {};
 
-  constructor(data: JsonTeam | ClupikTeam, source: DataSource) {
+  constructor(data: JsonTeam | ClupikTeam | TchoukNetGameTeam, source: DataSource) {
     this.source = source;
 
     if (source === 'json') {
@@ -28,6 +30,23 @@ export default class Team {
       this.name = clupikTeam.name;
       this.logo = clupikTeam.meta.avatar.large;
     }
+
+    if (source === 'tchouk.net') {
+      const tchoukDotNetTeam = data as TchoukNetGameTeam;
+
+      this.id = tchoukDotNetTeam.id;
+      this.name = tchoukDotNetTeam.name;
+      this.countryCode = {
+        ioc: tchoukDotNetTeam.team.team_entity?.countries[0]?.ioc_code,
+        iso2: tchoukDotNetTeam.team.team_entity?.countries[0]?.iso_code2,
+      };
+    }
+  }
+
+  get countryFlagPath(): string | undefined {
+    if (this.countryCode.iso2) {
+      return `/images/flags/${this.countryCode.iso2.toLowerCase()}.svg`;
+    }
   }
 
   get logoUrl(): string | null {
@@ -43,6 +62,8 @@ export default class Team {
       slug = 'geneva_flames';
     } else if (this.name.includes('La Chaux-de-Fonds Beehives')) {
       slug = 'la_chaux-de-fonds_beehives';
+    } else if (this.name.includes('BEJUNE')) {
+      slug = 'tchoukball_bejune';
     } else if (this.name.includes('Nyon Lakers')) {
       slug = 'nyon_lakers';
     } else if (this.name.includes('Delémont Blizzard')) {

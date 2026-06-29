@@ -1,10 +1,10 @@
 <template>
-  <div class="score">
+  <div class="score" :class="{ 'score--for-score-banner': forScoreBanner }">
     <div v-if="!hideLabel" class="score-label">Score<br />final</div>
     <div class="score-box">
-      <div class="score-text">{{ match?.resultHome }}</div>
+      <div class="score-text">{{ match?.resultHome || 0 }}</div>
       <div class="score-separator"></div>
-      <div class="score-text">{{ match?.resultAway }}</div>
+      <div class="score-text">{{ match?.resultAway || 0 }}</div>
     </div>
   </div>
 </template>
@@ -12,7 +12,11 @@
 <script lang="ts" setup>
 import type Match from '~/models/match.model';
 
-const { hideLabel, match = undefined } = defineProps<{ hideLabel?: boolean; match?: Match | undefined }>();
+const {
+  match = undefined,
+  hideLabel,
+  forScoreBanner = false,
+} = defineProps<{ match?: Match | undefined; hideLabel?: boolean; forScoreBanner?: boolean }>();
 </script>
 
 <style scoped>
@@ -39,24 +43,40 @@ const { hideLabel, match = undefined } = defineProps<{ hideLabel?: boolean; matc
   &:first-child {
     margin-top: 0;
   }
+
+  .score--for-score-banner & {
+    min-width: 35cqh;
+    padding-inline: 6cqw;
+    border-radius: 0;
+    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+    transition: clip-path 0.3s ease 0.3s;
+
+    .scene-break & {
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+    }
+  }
 }
 
 .score-text {
-  padding: 0 2cqh;
+  padding: 0 1cqw;
   font-size: 9.3cqh;
   font-weight: 700;
 
-  background-image: var(--gradient-score-separator);
+  background-image: var(--gradient-score-text);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* .score-separator {
+  transform: translateY(-5%);
+} */
+
 .score-separator {
-  height: calc(104%);
-  transform: translateY(-2%) rotate(10deg);
-  overflow: hidden;
-  width: 0.5cqh;
-  background-image: var(--gradient-score-separator);
+  height: 100%;
+  /* transform: translateY(-2%) rotate(10deg); */
+  /* overflow: hidden; */
+  width: 0.2cqh;
+  background-image: var(--gradient-score-text);
 }
 </style>

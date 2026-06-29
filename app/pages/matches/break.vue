@@ -1,24 +1,14 @@
 <template>
   <OverlayViewer :match="match">
-    <TransparentOverlay>
+    <OverlayBackground class="break">
       <!-- <LogoScroller class="logo-scroller" /> -->
-      <CornerLogo size="small" :match="match" />
+      <CornerVisual v-if="match?.competitionHasCornerVisual" size="small" :match="match" />
+      <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" small class="break__competition-logo" />
 
-      <div class="teams">
-        <div class="team team--home">
-          <div class="team-name">{{ match?.homeTeam?.name || '' }}</div>
-        </div>
+      <ScoreBanner :match="match" />
 
-        <ScoreBox hide-label :match="match" class="teams__score-box" />
-
-        <div class="team team--away">
-          <div class="team-name">{{ match?.awayTeam?.name || '' }}</div>
-        </div>
-
-        <FinishedPeriods :match="match" class="teams__periods" />
-      </div>
       <ErrorOverlay v-if="matchLoadingError" :message="matchLoadingError.message" />
-    </TransparentOverlay>
+    </OverlayBackground>
   </OverlayViewer>
 </template>
 
@@ -50,59 +40,10 @@ onMounted(async () => {
   width: 100%;
 }
 
-.teams {
+.break__competition-logo {
   position: absolute;
-  top: 65cqh;
-  width: 100%;
-  min-height: 18.5cqh;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding-block: 2.3cqh;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas:
-    'team-home score-box team-away'
-    'periods periods periods';
-  align-items: center;
-  gap: 3.6cqw;
-}
-
-.team {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5cqw;
-
-  &.team--home {
-    grid-area: team-home;
-    align-items: flex-end;
-    padding-left: 1.5cqw;
-  }
-
-  &.team--away {
-    grid-area: team-away;
-    align-items: flex-start;
-    padding-right: 1.5cqw;
-  }
-}
-
-.team-name {
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 5.5cqh;
-
-  .team--home & {
-    text-align: right;
-  }
-}
-
-.teams__score-box {
-  grid-area: score-box;
-}
-
-.teams__periods {
-  grid-area: periods;
+  top: 3cqh;
+  left: 3cqw;
+  height: 10%;
 }
 </style>

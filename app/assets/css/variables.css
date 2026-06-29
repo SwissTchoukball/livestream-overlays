@@ -1,15 +1,42 @@
 :root {
   --gradient-score-box: linear-gradient(to top right, #cf2f28, #e5989b);
-  --gradient-score-separator: linear-gradient(to bottom, #fff, #ccc);
+  --gradient-score-text: linear-gradient(to bottom, #fff, #ccc);
   --gradient-set-box: linear-gradient(to top right, #cf2f28, #e5989b);
   --foreground-color-set-box: #fff;
   --background-color-score-box: #fff;
+  --background-color-time-box: #333;
+  --foreground-color-time-box: #fff;
+  --foreground-color-overlay: #000;
+  --background-color-fullscreen-overlay: #fff;
+  --background-score-banner: #fff;
+  --foreground-score-banner: #000;
+  --width-upcoming-message: 60%;
+  --polygon-match-name-mask: polygon(0 0, 100% 0, 3% 100%, 0 100%);
+  --width-match-name: 60cqw;
+  --hyphens-match-name: auto;
 }
 
 .theme-swiss-cup-2026 {
   --gradient-score-box: linear-gradient(to top right, #3e2169, #008b3e);
-  --gradient-score-separator: linear-gradient(to bottom, #fff, #ccc);
+  --gradient-score-text: linear-gradient(to bottom, #fff, #ccc);
   --gradient-set-box: linear-gradient(to top right, #21324a, #336f4b);
   --foreground-color-set-box: #fff;
   --background-color-score-box: auto;
+}
+
+.theme-euro-2024,
+.theme-euro-2026 {
+  --gradient-score-box: none;
+  --gradient-score-text: linear-gradient(to bottom, #fff, #ccc);
+  --foreground-color-set-box: #fff;
+  --background-color-score-box: #00567c;
+  --background-color-time-box: #00567c;
+  --foreground-color-overlay: #fff;
+  --background-color-fullscreen-overlay: #00567c;
+  --background-score-banner: #6be2e4;
+  --foreground-score-banner: #00567c;
+  --width-upcoming-message: 45%;
+  --polygon-match-name-mask: polygon(0 0, 0 0, 0 100%, 0 100%);
+  --width-match-name: 62cqw;
+  --hyphens-match-name: none;
 }

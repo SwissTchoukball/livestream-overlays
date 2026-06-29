@@ -113,6 +113,7 @@ export interface ClupikResultAttributes {
   id: string;
   value: number | null;
   score: number | null;
+  team: ClupikTeam | null;
 }
 
 export interface ClupikPeriodAttributes {

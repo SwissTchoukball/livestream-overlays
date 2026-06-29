@@ -1,5 +1,5 @@
 <template>
-  <div class="periods">
+  <div class="periods" :class="{ 'periods--always-visible': alwaysVisible }">
     <div v-for="(period, index) in match?.finishedPeriods" :key="`period-${index}`" class="period">
       <div class="period-score">{{ period.scoreHome }}</div>
       <div class="period-separator">-</div>
@@ -11,26 +11,40 @@
 <script lang="ts" setup>
 import type Match from '~/models/match.model';
 
-const { match = undefined } = defineProps<{ match?: Match | undefined }>();
+const { match = undefined, alwaysVisible = false } = defineProps<{
+  match?: Match | undefined;
+  alwaysVisible?: boolean;
+}>();
 </script>
 
 <style scoped>
 .periods {
   display: flex;
   justify-content: center;
-  gap: 1.5cqw;
 }
 
 .period {
-  display: flex;
-  gap: 0.2cqw;
+  flex: 1 0 0;
+  min-width: 0;
 
-  font-size: 4cqh;
+  display: flex;
+  justify-content: center;
+  gap: 0.2cqw;
+  padding-inline: 1.5cqw;
+
+  font-size: 3cqh;
   font-weight: 700;
 
-  &:not(:last-child)::after {
-    content: '/';
-    margin-left: 1.5cqw;
+  &:not(:last-child) {
+    border-right: 0.2cqh solid currentColor;
+  }
+
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  .periods--always-visible &,
+  .scene-end-game & {
+    opacity: 1;
+    transition: opacity 0.5s cubic-bezier(0.65, 0.05, 0.36, 1) 1s;
   }
 }
 </style>

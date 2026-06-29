@@ -1,14 +1,13 @@
 <template>
   <OverlayViewer :match="match">
-    <FullScreenOverlay :match="match">
-      <div class="upcoming-message">
-        <div class="upcoming-message-text">Dans quelques instants :</div>
-        <div class="upcoming-message-match-name">{{ match?.name }}</div>
-      </div>
+    <OverlayBackground :match="match" force-fullscreen-background>
+      <CornerVisual v-if="match?.competitionHasCornerVisual" :match="match" always-visible />
+      <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" class="pre-game__competition-logo" />
+      <UpcomingMessage :match="match" always-visible />
 
-      <TeamsWithLogo v-if="match" :match="match" class="pre-game__teams" />
+      <TeamsWithLogo v-if="match" :match="match" always-visible class="pre-game__teams" />
       <ErrorOverlay v-if="error" :message="error.message" />
-    </FullScreenOverlay>
+    </OverlayBackground>
   </OverlayViewer>
 </template>
 
@@ -38,34 +37,10 @@ const error = ref<Error>();
   width: 100%;
 }
 
-.upcoming-message {
+.pre-game__competition-logo {
   position: absolute;
-  top: 25%;
-  right: 6%;
-  text-transform: uppercase;
-  text-align: right;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  animation: upcoming-float 3s ease-in-out infinite;
-  will-change: transform;
-}
-
-.upcoming-message-text {
-  font-size: 5.5cqh;
-}
-
-.upcoming-message-match-name {
-  font-weight: 700;
-  font-size: 8.5cqh;
-}
-
-@keyframes upcoming-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-1.2cqh);
-  }
+  top: 3cqh;
+  left: 3cqw;
+  height: 28%;
 }
 </style>
