@@ -52,18 +52,20 @@ jobs:
           path: .output/public/
 
       - name: Deploy via rsync
+        env:
+          SSH_PASSPHRASE: ${{ secrets.INFOMANIAK_SSH_PASSPHRASE }}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.INFOMANIAK_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-          # Remove passphrase from the key
-          ssh-keygen -p -P "${{ secrets.INFOMANIAK_SSH_PASSPHRASE }}" -N "" -f ~/.ssh/deploy_key
+          # Remove passphrase only if the key is actually encrypted
+          if ! ssh-keygen -y -f ~/.ssh/deploy_key < /dev/null > /dev/null 2>&1; then
+            ssh-keygen -p -P "$SSH_PASSPHRASE" -N "" -f ~/.ssh/deploy_key
+          fi
 
-          # Add host to known hosts
           ssh-keyscan -H ${{ vars.INFOMANIAK_SSH_HOST }} >> ~/.ssh/known_hosts
 
-          # Deploy with rsync (delete remote files not present in source)
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" \
             .output/public/ \
