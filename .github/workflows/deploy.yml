@@ -1,0 +1,70 @@
+name: Build and Deploy to Infomaniak
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: build-and-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Nuxt App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate static site
+        env:
+          NUXT_APP_BASE_URL: /livestream-overlays/
+        run: npm run generate
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: .output/public/
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to Infomaniak
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: output
+          path: .output/public/
+
+      - name: Deploy via rsync
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.INFOMANIAK_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # Remove passphrase from the key
+          ssh-keygen -p -P "${{ secrets.INFOMANIAK_SSH_PASSPHRASE }}" -N "" -f ~/.ssh/deploy_key
+
+          # Add host to known hosts
+          ssh-keyscan -H ${{ vars.INFOMANIAK_SSH_HOST }} >> ~/.ssh/known_hosts
+
+          # Deploy with rsync (delete remote files not present in source)
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" \
+            .output/public/ \
+            ${{ vars.INFOMANIAK_SSH_USERNAME }}@${{ vars.INFOMANIAK_SSH_HOST }}:~/sites/site.tchoukball.ch/livestream-overlays/

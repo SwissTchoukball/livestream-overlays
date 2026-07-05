@@ -40,4 +40,22 @@ Locally preview production build:
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Deployment
+
+Deployment to the Infomaniak server is handled by a GitHub Actions workflow (see `.github/workflows/deploy.yml`).
+
+The workflow is split into two parts:
+
+1. **Build** — triggered automatically on every push to `main`
+   - Generates the static site with `NUXT_APP_BASE_URL=/livestream-overlays/`
+   - Stores the output as a workflow artifact
+
+2. **Deploy** — triggered **manually** from the GitHub Actions UI
+   - Downloads the latest build artifact
+   - Syncs the contents of `.output/public/` to the server via `rsync --delete`
+
+### Deploying manually
+
+Go to **Actions → "Build and Deploy to Infomaniak"** in GitHub, then click **Run workflow**.
+
+The app is deployed to the server at https://site.tchoukball.ch/livestream-overlays/.
