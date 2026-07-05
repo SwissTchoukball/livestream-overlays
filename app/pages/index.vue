@@ -1,32 +1,30 @@
 <template>
   <main>
+    <h1>tchouk.net</h1>
+    <ul>
+      <li class="match-item">
+        <h4>Entrée manuelle</h4>
+        <label>ID tchouk.net du match</label>
+        <input v-model="tchoukNetManualMatchId" type="text" /><br />
+        <ScenesLinks :match-id="tchoukNetManualMatchId" source="tchouk.net" />
+      </li>
+      <li v-for="match in tchoukNetMatches" :key="match.id" class="match-item">
+        <h4>{{ match.name }} – {{ match.id }}</h4>
+        <ScenesLinks :match-id="match.id" source="clupik" />
+      </li>
+    </ul>
+
     <h1>Clupik</h1>
     <ul>
+      <li class="match-item">
+        <h4>Entrée manuelle</h4>
+        <label>ID Clupik du match</label>
+        <input v-model="clupikManualMatchId" type="text" /><br />
+        <ScenesLinks :match-id="clupikManualMatchId" source="clupik" />
+      </li>
       <li v-for="match in clupikMatches" :key="match.id" class="match-item">
         <h4>{{ match.name }} – {{ match.id }}</h4>
-        <NuxtLink :to="$localePath({ name: 'matches-dynamic', query: { id: match.id, source: 'clupik' } })">
-          Dynamic
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-thumbnail', query: { id: match.id, source: 'clupik' } })">
-          Thumbnail
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-pre-game', query: { id: match.id, source: 'clupik' } })">
-          Pre-game
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-play-time', query: { id: match.id, source: 'clupik' } })">
-          Play-time
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-break', query: { id: match.id, source: 'clupik' } })">
-          Break
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-end-game', query: { id: match.id, source: 'clupik' } })">
-          End-game
-        </NuxtLink>
+        <ScenesLinks :match-id="match.id" source="clupik" />
       </li>
     </ul>
 
@@ -36,24 +34,7 @@
         <h4>
           {{ match.id }} — {{ match.name }} — {{ match.homeTeam?.name || '?' }} × {{ match.awayTeam?.name || '?' }}
         </h4>
-
-        <NuxtLink :to="$localePath({ name: 'matches-thumbnail', query: { id: match.id, source: 'json' } })">
-          Vignette
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-pre-game', query: { id: match.id, source: 'json' } })">
-          Pré-match
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-play-time', query: { id: match.id, source: 'json' } })">
-          Jeu
-        </NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-break', query: { id: match.id, source: 'json' } })">Pause</NuxtLink>
-        /
-        <NuxtLink :to="$localePath({ name: 'matches-end-game', query: { id: match.id, source: 'json' } })">
-          Fin de match
-        </NuxtLink>
+        <ScenesLinks :match-id="match.id" source="json" />
       </li>
     </ul>
   </main>
@@ -61,8 +42,11 @@
 
 <script lang="ts" setup>
 const { jsonMatches: matches } = useJsonMatches();
+const tchoukNetManualMatchId = ref('');
+const tchoukNetMatches: { id: string; name: string }[] = [];
 
-const clupikMatches = [
+const clupikManualMatchId = ref('');
+const clupikMatches: { id: string; name: string }[] = [
   { id: '144976227', name: '13.06 10h00 - Puplinge Oympus – Sion Expendables' },
   { id: '144976228', name: '13.06 11h30 - Geneva Dragons M21 – Delémont Blizzard' },
   { id: '144976232', name: '13.06 13h00 - Val-de-Ruz Pingouins – Geneva Young Dragons' },
