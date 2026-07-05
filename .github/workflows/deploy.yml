@@ -52,21 +52,12 @@ jobs:
           path: .output/public/
 
       - name: Deploy via rsync
-        env:
-          SSH_PASSPHRASE: ${{ secrets.INFOMANIAK_SSH_PASSPHRASE }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.INFOMANIAK_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-          # Remove passphrase only if the key is actually encrypted
-          if ! ssh-keygen -y -f ~/.ssh/deploy_key < /dev/null > /dev/null 2>&1; then
-            ssh-keygen -p -P "$SSH_PASSPHRASE" -N "" -f ~/.ssh/deploy_key
-          fi
-
-          ssh-keyscan -H ${{ vars.INFOMANIAK_SSH_HOST }} >> ~/.ssh/known_hosts
-
-          rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" \
-            .output/public/ \
-            ${{ vars.INFOMANIAK_SSH_USERNAME }}@${{ vars.INFOMANIAK_SSH_HOST }}:~/sites/site.tchoukball.ch/livestream-overlays/
+        uses: Burnett01/rsync-deployments@v9
+        with:
+          switches: -avzr --delete
+          path: .output/public/
+          remote_path: ~/sites/site.tchoukball.ch/livestream-overlays/
+          remote_host: ${{ vars.INFOMANIAK_SSH_HOST }}
+          remote_user: ${{ vars.INFOMANIAK_SSH_USERNAME }}
+          remote_key: ${{ secrets.INFOMANIAK_SSH_PRIVATE_KEY }}
+          remote_key_pass: ${{ secrets.INFOMANIAK_SSH_PASSPHRASE }}
