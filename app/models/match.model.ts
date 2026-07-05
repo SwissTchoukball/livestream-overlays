@@ -181,6 +181,11 @@ export default class Match {
     return scores;
   }
 
+  get parsedName(): string {
+    // Replace hyphens with non-breaking hyphens
+    return this.name.replaceAll(/-/g, '&#8209;');
+  }
+
   get ongoingOrLastPeriod() {
     let period = this.periods.find((period) => !period.finished);
     if (!period) {

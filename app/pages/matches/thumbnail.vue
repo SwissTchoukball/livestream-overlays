@@ -10,7 +10,7 @@
       />
       <div class="match-name" :data-competition="match?.competition">
         <div class="match-name-mask"></div>
-        {{ match?.name }}
+        <span v-html="match?.parsedName"></span>
       </div>
 
       <TeamsWithLogo

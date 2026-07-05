@@ -1,6 +1,6 @@
 <template>
   <div class="score" :class="{ 'score--for-score-banner': forScoreBanner }">
-    <div v-if="!hideLabel" class="score-label">Score<br />final</div>
+    <div v-if="!hideLabel" class="score-label">{{ $t('finalScore') }}</div>
     <div class="score-box">
       <div class="score-text">{{ match?.resultHome || 0 }}</div>
       <div class="score-separator"></div>
@@ -20,11 +20,19 @@ const {
 </script>
 
 <style scoped>
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5.1cqh;
+}
+
 .score-label {
   font-size: 5.5cqh;
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
+  width: min-content;
 }
 
 .score-box {
@@ -34,7 +42,6 @@ const {
 
   min-width: 27.8cqh;
   height: 12cqh;
-  margin-top: 5.1cqh;
   background-image: var(--gradient-score-box);
   background-color: var(--background-color-score-box);
   border-radius: 1cqw;

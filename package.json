@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^1.16.0",
+    "@nuxtjs/i18n": "^10.4.0",
     "@zumer/snapdom": "^2.12.9",
     "date-fns": "^4.4.0",
     "eslint": "^9.39.4",

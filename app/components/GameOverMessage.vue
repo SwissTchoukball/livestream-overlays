@@ -1,5 +1,7 @@
 <template>
-  <div class="game-over-message" :class="{ 'game-over-message--always-visible': alwaysVisible }">Match terminé !</div>
+  <div class="game-over-message" :class="{ 'game-over-message--always-visible': alwaysVisible }">
+    {{ $t('endGameTagLine') }}
+  </div>
 </template>
 
 <script lang="ts" setup>

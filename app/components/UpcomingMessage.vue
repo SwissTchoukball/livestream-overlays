@@ -1,7 +1,7 @@
 <template>
   <div class="upcoming-message" :class="{ 'upcoming-message--always-visible': alwaysVisible }">
-    <div class="upcoming-message-text">Dans quelques instants :</div>
-    <div class="upcoming-message-match-name" v-html="parsedName"></div>
+    <div class="upcoming-message-text">{{ $t('comingUp') }}</div>
+    <div class="upcoming-message-match-name" v-html="match?.parsedName"></div>
   </div>
 </template>
 
@@ -12,11 +12,6 @@ const { match = undefined, alwaysVisible = false } = defineProps<{
   match?: Match | undefined;
   alwaysVisible?: boolean;
 }>();
-
-const parsedName = computed(() => {
-  // Replace hyphens with non-breaking hyphens
-  return match?.name.replaceAll(/-/g, '&#8209;');
-});
 </script>
 
 <style scoped>

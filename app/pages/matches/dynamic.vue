@@ -86,6 +86,6 @@ const showTeamsWithScoreBox = computed(() => {
 
 .dynamic__game-over-message {
   position: absolute;
-  top: 20cqh;
+  top: 26cqh;
 }
 </style>

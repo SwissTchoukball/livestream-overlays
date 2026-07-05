@@ -4,12 +4,29 @@
     <ul>
       <li v-for="match in clupikMatches" :key="match.id" class="match-item">
         <h4>{{ match.name }} – {{ match.id }}</h4>
-        <NuxtLink :to="{ name: 'matches-dynamic', query: { id: match.id, source: 'clupik' } }">Dynamic</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-thumbnail', query: { id: match.id, source: 'clupik' } }">Thumbnail</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-pre-game', query: { id: match.id, source: 'clupik' } }">Pre-game</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-play-time', query: { id: match.id, source: 'clupik' } }">Play-time</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-break', query: { id: match.id, source: 'clupik' } }">Break</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-end-game', query: { id: match.id, source: 'clupik' } }">End-game</NuxtLink>
+        <NuxtLink :to="$localePath({ name: 'matches-dynamic', query: { id: match.id, source: 'clupik' } })">
+          Dynamic
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-thumbnail', query: { id: match.id, source: 'clupik' } })">
+          Thumbnail
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-pre-game', query: { id: match.id, source: 'clupik' } })">
+          Pre-game
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-play-time', query: { id: match.id, source: 'clupik' } })">
+          Play-time
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-break', query: { id: match.id, source: 'clupik' } })">
+          Break
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-end-game', query: { id: match.id, source: 'clupik' } })">
+          End-game
+        </NuxtLink>
       </li>
     </ul>
 
@@ -20,11 +37,23 @@
           {{ match.id }} — {{ match.name }} — {{ match.homeTeam?.name || '?' }} × {{ match.awayTeam?.name || '?' }}
         </h4>
 
-        <NuxtLink :to="{ name: 'matches-thumbnail', query: { id: match.id, source: 'json' } }">Vignette</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-pre-game', query: { id: match.id, source: 'json' } }">Pré-match</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-play-time', query: { id: match.id, source: 'json' } }">Jeu</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-break', query: { id: match.id, source: 'json' } }">Pause</NuxtLink> /
-        <NuxtLink :to="{ name: 'matches-end-game', query: { id: match.id, source: 'json' } }">Fin de match</NuxtLink>
+        <NuxtLink :to="$localePath({ name: 'matches-thumbnail', query: { id: match.id, source: 'json' } })">
+          Vignette
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-pre-game', query: { id: match.id, source: 'json' } })">
+          Pré-match
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-play-time', query: { id: match.id, source: 'json' } })">
+          Jeu
+        </NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-break', query: { id: match.id, source: 'json' } })">Pause</NuxtLink>
+        /
+        <NuxtLink :to="$localePath({ name: 'matches-end-game', query: { id: match.id, source: 'json' } })">
+          Fin de match
+        </NuxtLink>
       </li>
     </ul>
   </main>

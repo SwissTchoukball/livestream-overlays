@@ -10,6 +10,14 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['~/assets/css/main.css'],
+  i18n: {
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'fr', name: 'Français', file: 'fr.json' },
+    ],
+    strategy: 'prefix_except_default',
+  },
 });

@@ -39,7 +39,7 @@ onMounted(async () => {
 }
 
 .end-game__game-over-message {
-  margin-top: 20cqh;
+  margin-top: 26cqh;
 }
 
 .end-game__teams {

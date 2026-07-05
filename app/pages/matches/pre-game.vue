@@ -2,7 +2,12 @@
   <OverlayViewer :match="match">
     <OverlayBackground :match="match" force-fullscreen-background>
       <CornerVisual v-if="match?.competitionHasCornerVisual" :match="match" always-visible />
-      <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" class="pre-game__competition-logo" />
+      <CompetitionLogo
+        v-if="match?.competitionHasLogo"
+        :match="match"
+        always-visible
+        class="pre-game__competition-logo"
+      />
       <UpcomingMessage :match="match" always-visible />
 
       <TeamsWithLogo v-if="match" :match="match" always-visible class="pre-game__teams" />
