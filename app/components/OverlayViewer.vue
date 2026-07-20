@@ -74,7 +74,7 @@ defineExpose({
   border-top: 0;
   border-left: 0;
 
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
 
   @media (min-resolution: 2x) {
     width: 960px;
