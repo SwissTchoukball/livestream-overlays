@@ -58,7 +58,7 @@ const {
     clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
     transition: clip-path 0.3s ease 0.3s;
 
-    .scene-break & {
+    .scene-banner & {
       clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
     }
   }

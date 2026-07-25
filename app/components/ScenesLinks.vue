@@ -7,7 +7,7 @@
   /
   <NuxtLink :to="$localePath({ name: 'matches-play-time', query: { id: matchId, source } })">Play-time</NuxtLink>
   /
-  <NuxtLink :to="$localePath({ name: 'matches-break', query: { id: matchId, source } })">Break</NuxtLink>
+  <NuxtLink :to="$localePath({ name: 'matches-banner', query: { id: matchId, source } })">Banner</NuxtLink>
   /
   <NuxtLink :to="$localePath({ name: 'matches-end-game', query: { id: matchId, source } })">End-game</NuxtLink>
 </template>

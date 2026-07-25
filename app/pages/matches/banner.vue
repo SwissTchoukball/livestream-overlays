@@ -1,9 +1,9 @@
 <template>
   <OverlayViewer :match="match">
-    <OverlayBackground class="break">
+    <OverlayBackground class="banner">
       <!-- <LogoScroller class="logo-scroller" /> -->
       <CornerVisual v-if="match?.competitionHasCornerVisual" size="small" :match="match" />
-      <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" small class="break__competition-logo" />
+      <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" small class="banner__competition-logo" />
 
       <ScoreBanner :match="match" />
 
@@ -40,7 +40,7 @@ onMounted(async () => {
   width: 100%;
 }
 
-.break__competition-logo {
+.banner__competition-logo {
   position: absolute;
   top: 3cqh;
   left: 3cqw;

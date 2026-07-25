@@ -8,7 +8,7 @@
   <progress v-if="generatingImage" />
   <input v-model="currentScene" type="text" placeholder="Custom scene name" />
   <button @click="setScene('pre-game')">Pre-game</button>
-  <button @click="setScene('break')">Break</button>
+  <button @click="setScene('banner')">Banner</button>
   <button @click="setScene('play-time')">Play time</button>
   <button @click="setScene('end-game')">End game</button>
 </template>

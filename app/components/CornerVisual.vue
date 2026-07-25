@@ -41,7 +41,7 @@ const visualSrcFallback = computed(() => withBase('/images/default/corner-visual
   transition: opacity 0.5s cubic-bezier(0.65, 0.05, 0.36, 1) 0s;
 
   &.corner-visual--always-visible,
-  .scene-break &,
+  .scene-banner &,
   .scene-pre-game &,
   .scene-end-game & {
     opacity: 1;

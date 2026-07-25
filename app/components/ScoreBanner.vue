@@ -59,7 +59,7 @@ defineProps<{ match?: Match | undefined }>();
     top 0.3s ease,
     opacity 0.3s ease;
 
-  .scene-break & {
+  .scene-banner & {
     top: -1lh;
     opacity: 1;
     transition:
@@ -83,7 +83,7 @@ defineProps<{ match?: Match | undefined }>();
 
   clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
   transition: clip-path 0.5s ease-in-out 0.3s;
-  .scene-break & {
+  .scene-banner & {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     transition: clip-path 0.5s ease-in-out 0.8s;
   }
@@ -154,7 +154,7 @@ defineProps<{ match?: Match | undefined }>();
     -webkit-text-fill-color: transparent;
   }
 
-  .scene-break & {
+  .scene-banner & {
     top: 100%;
     opacity: 1;
     transition:

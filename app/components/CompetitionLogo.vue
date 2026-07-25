@@ -53,12 +53,12 @@ const logoSrc = computed(() =>
     transition-delay: 1.5s;
   }
 
-  .scene-break &.competition-logo--small:not(.competition-logo--monochrome) {
+  .scene-banner &.competition-logo--small:not(.competition-logo--monochrome) {
     opacity: 1;
     transition-delay: 1s;
   }
 
-  .overlay-viewer:not(.scene-pre-game, .scene-break, .scene-end-game) &.competition-logo--monochrome {
+  .overlay-viewer:not(.scene-pre-game, .scene-banner, .scene-end-game) &.competition-logo--monochrome {
     opacity: 1;
   }
 }
