@@ -58,8 +58,7 @@ const logoSrc = computed(() =>
     transition-delay: 1s;
   }
 
-  .scene-play-time &.competition-logo--monochrome,
-  .scene- &.competition-logo--monochrome {
+  .overlay-viewer:not(.scene-pre-game, .scene-break, .scene-end-game) &.competition-logo--monochrome {
     opacity: 1;
   }
 }
