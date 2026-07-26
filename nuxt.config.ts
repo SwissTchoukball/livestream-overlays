@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@vueuse/nuxt'],
   css: ['~/assets/css/main.css'],
   i18n: {
     defaultLocale: 'en',

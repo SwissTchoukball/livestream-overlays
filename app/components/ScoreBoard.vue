@@ -71,7 +71,7 @@ function validateColor(colorQuery: string | (string | null)[] | undefined | null
   if (color?.match(/^[0-9A-Fa-f]{6}$/)) {
     return `#${color}`;
   }
-  if (color?.match(/^[a-zA-Z]+$/)) {
+  if (color?.match(/^[a-zA-Z]+$/) || color?.match(/^#([0-9A-Fa-f]{6})$/)) {
     return color;
   }
   return undefined;
