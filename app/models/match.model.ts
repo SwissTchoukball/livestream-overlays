@@ -22,6 +22,7 @@ export default class Match {
     finished: boolean;
   }[] = [];
   source!: DataSource;
+  momentum: number[] = [];
 
   competitionHasLogo: boolean = false;
   competitionHasCornerVisual: boolean = true;
@@ -98,6 +99,10 @@ export default class Match {
       this.resultHome = tchoukDotNetMatch.selection_a?.total_points ?? null;
       this.resultAway = tchoukDotNetMatch.selection_b?.total_points ?? null;
       this.periods = this.getPeriodsFromTchoukDotNetGame(tchoukDotNetMatch);
+
+      console.log({analytics: tchoukDotNetMatch.analytics});
+
+      this.momentum = tchoukDotNetMatch.analytics?.momentum ?? [];
     }
 
     if (this.competition === 'euro') {
