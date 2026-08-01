@@ -33,10 +33,7 @@ let chart: Chart<'line', { x: number; y: number }[]> | undefined;
 
 const momentum = computed(() => match?.momentum ?? []);
 
-/**
- * A leading and a trailing zero are added so that the drawn area starts and ends on the baseline.
- */
-const points = computed(() => [0, ...momentum.value, 0].map((value, index) => ({ x: index, y: value })));
+const points = computed(() => momentum.value.map((value, index) => ({ x: index, y: value })));
 
 /**
  * The match is refetched (and rebuilt) every few seconds, which gives us a new momentum array every time,
