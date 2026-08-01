@@ -66,17 +66,6 @@ const pointsScoreAway = computed(() =>
 const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match?.homeTeam?.color ?? '#fff');
 const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match?.awayTeam?.color ?? '#fff');
 
-function validateColor(colorQuery: string | (string | null)[] | undefined | null): string | undefined {
-  const color = Array.isArray(colorQuery) ? colorQuery[0] : colorQuery;
-  if (color?.match(/^[0-9A-Fa-f]{6}$/)) {
-    return `#${color}`;
-  }
-  if (color?.match(/^[a-zA-Z]+$/) || color?.match(/^#([0-9A-Fa-f]{6})$/)) {
-    return color;
-  }
-  return undefined;
-}
-
 const cornerDecorationSrc = computed(() =>
   withBase(
     `/images/${match?.assetsFolder ?? 'default'}/score-background-decoration.png`,

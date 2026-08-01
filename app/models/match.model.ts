@@ -22,6 +22,7 @@ export default class Match {
     finished: boolean;
   }[] = [];
   source!: DataSource;
+  momentum: number[] = [];
 
   competitionHasLogo: boolean = false;
   competitionHasCornerVisual: boolean = true;
@@ -65,7 +66,6 @@ export default class Match {
       const resultAway = clupikMatch.results.find((result) => result.team?.id === rawAwayTeam?.id);
       this.resultAway = resultAway?.value ?? null;
 
-      console.log(clupikMatch.periods);
       this.periods = clupikMatch.periods.map((period) => {
         const periodResultHome = period.results.find((result) => result.team?.id === rawHomeTeam?.id);
         const periodResultAway = period.results.find((result) => result.team?.id === rawAwayTeam?.id);
@@ -98,6 +98,8 @@ export default class Match {
       this.resultHome = tchoukDotNetMatch.selection_a?.total_points ?? null;
       this.resultAway = tchoukDotNetMatch.selection_b?.total_points ?? null;
       this.periods = this.getPeriodsFromTchoukDotNetGame(tchoukDotNetMatch);
+
+      this.momentum = tchoukDotNetMatch.analytics?.momentum ?? [];
     }
 
     if (this.competition === 'euro') {

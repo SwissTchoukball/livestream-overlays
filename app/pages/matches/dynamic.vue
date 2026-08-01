@@ -8,6 +8,7 @@
       <GameOverMessage class="dynamic__game-over-message" />
 
       <ScoreBanner :match="match" />
+      <ScoreMomentum :match="match" />
 
       <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" small class="dynamic__competition-logo" />
       <CompetitionLogo

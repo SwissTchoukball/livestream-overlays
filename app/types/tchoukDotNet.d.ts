@@ -104,6 +104,10 @@ export interface TchoukNetGameLog {
   log_type: 'time_game_start' | 'score_point_scored' | 'score_point_correction';
 }
 
+export interface TchoukNetGameAnalytics {
+    momentum?: number[];
+}
+
 export interface TchoukNetGame {
   id: string;
   name?: string;
@@ -121,4 +125,5 @@ export interface TchoukNetGame {
   field?: TchoukNetField;
   organisation?: TchoukNetOrganisation;
   competition_phase?: TchoukNetCompetitionPhase;
+  analytics?: TchoukNetGameAnalytics;
 }
