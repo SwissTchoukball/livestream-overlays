@@ -1,14 +1,20 @@
 <template>
   <div class="score-momentum">
     <div class="score-momentum__box">
-      <div class="score-momentum__team score-momentum__team--home">{{ match?.homeTeam?.name || '' }}</div>
+      <div class="score-momentum__team score-momentum__team--home">
+        <TeamFlag v-if="match?.isCountryCompetition" :team="match?.homeTeam" class="score-momentum__team-flag" />
+        {{ match?.homeTeam?.name || '' }}
+      </div>
       <div class="score-momentum__chart">
         <canvas ref="canvas"></canvas>
       </div>
-      <div class="score-momentum__team score-momentum__team--away">{{ match?.awayTeam?.name || '' }}</div>
+      <div class="score-momentum__team score-momentum__team--away">
+        {{ match?.awayTeam?.name || '' }}
+        <TeamFlag v-if="match?.isCountryCompetition" :team="match?.awayTeam" class="score-momentum__team-flag" />
+      </div>
     </div>
     <div class="score-momentum__credit">
-      {{ $t('poweredBy') }}
+      {{ $t('momentumBy') }}
       <TchoukNetLogo class="score-momentum__credit-logo" />
     </div>
   </div>
@@ -17,6 +23,7 @@
 <script lang="ts" setup>
 import { Chart, Filler, LineController, LineElement, LinearScale, PointElement } from 'chart.js';
 import type { ChartConfiguration, Plugin } from 'chart.js';
+import Color from 'color';
 import type Match from '~/models/match.model';
 
 const route = useRoute();
@@ -80,10 +87,11 @@ function buildDataset(): MomentumDataset {
     borderWidth: 4,
     tension: 0.35,
     pointRadius: 0,
-    borderColor: homeTeamColor.value,
     segment: {
       borderColor: (ctx) =>
-        ((ctx.p0.parsed.y ?? 0) + (ctx.p1.parsed.y ?? 0)) / 2 >= 0 ? homeTeamColor.value : awayTeamColor.value,
+        ((ctx.p0.parsed.y ?? 0) + (ctx.p1.parsed.y ?? 0)) / 2 >= 0
+          ? Color(homeTeamColor.value).darken(0.5).toString()
+          : Color(awayTeamColor.value).darken(0.5).toString(),
     },
     fill: {
       target: { value: 0 },
@@ -107,8 +115,7 @@ const zeroLinePlugin: Plugin<'line'> = {
     ctx.moveTo(chartArea.left, y);
     ctx.lineTo(chartArea.right, y);
     ctx.lineWidth = 2;
-    ctx.strokeStyle =
-      getComputedStyle(chart.canvas).getPropertyValue('--foreground-color-overlay').trim() || '#000';
+    ctx.strokeStyle = '#999';
     ctx.stroke();
     ctx.restore();
   },
@@ -168,7 +175,7 @@ onBeforeUnmount(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70cqw;
-  height: 40cqh;
+  height: 50cqh;
 
   /* The chart is kept in the layout (rather than `display: none`) so that it can be transitioned in */
   visibility: hidden;
@@ -189,20 +196,19 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 2cqh;
 
   border-radius: 2cqh;
   background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(0);
   transition:
     background-color 0.3s ease,
     backdrop-filter 0.3s ease;
 
   .scene-momentum & {
-    background-color: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(1.5cqh);
+    background-color: rgba(255, 255, 255, 0.9);
     transition:
-      background-color 2s ease 1s,
-      backdrop-filter 2s ease 1s;
+      background-color 1s ease 1s,
+      backdrop-filter 1s ease 1s;
   }
 }
 
@@ -261,13 +267,22 @@ onBeforeUnmount(() => {
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1.2;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 1cqh;
 
   &.score-momentum__team--home {
-    color: v-bind(homeTeamColor);
+    justify-content: flex-start;
   }
 
   &.score-momentum__team--away {
-    color: v-bind(awayTeamColor);
+    justify-content: flex-end;
   }
+}
+
+.score-momentum__team-flag {
+  width: 4cqh;
+  height: 4cqh;
 }
 </style>

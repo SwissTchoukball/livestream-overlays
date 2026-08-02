@@ -76,6 +76,8 @@ defineExpose({
   border-left: 0;
 
   /* background-color: lightgrey; */
+  /* background-image: url('https://cms.tchoukball.ch/assets/267c4f4d-79e9-4d0a-bcda-925c13eda7b7/?width=1600');
+  background-size: cover; */
 
   @media (min-resolution: 2x) {
     width: 960px;
