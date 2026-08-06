@@ -73,6 +73,7 @@ export interface TchoukNetGameTeam {
     '2': number;
     '3': number;
   };
+  jersey_color: string;
   id: string;
 }
 
@@ -105,7 +106,7 @@ export interface TchoukNetGameLog {
 }
 
 export interface TchoukNetGameAnalytics {
-    momentum?: number[];
+  momentum?: number[];
 }
 
 export interface TchoukNetGame {

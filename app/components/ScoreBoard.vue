@@ -47,6 +47,8 @@ const route = useRoute();
 
 const { match = undefined } = defineProps<{ match?: Match }>();
 
+const { homeTeamColor, awayTeamColor } = useTeamColors(match);
+
 const setsScoreHome = computed(() => (route.query.source === 'json' ? ' ' : (match?.resultHome ?? '0')));
 const setsScoreAway = computed(() => (route.query.source === 'json' ? ' ' : (match?.resultAway ?? '0')));
 const pointsScoreHome = computed(() =>
@@ -63,8 +65,6 @@ const pointsScoreAway = computed(() =>
       ? (match?.resultAway ?? '0')
       : (match?.ongoingOrLastPeriod?.scoreAway ?? '0'),
 );
-const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match?.homeTeam?.color ?? '#fff');
-const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match?.awayTeam?.color ?? '#fff');
 
 const cornerDecorationSrc = computed(() =>
   withBase(

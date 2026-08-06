@@ -21,6 +21,8 @@ export default class Match {
     scoreAway: number | null;
     finished: boolean;
   }[] = [];
+  colorHome: string | null = null;
+  colorAway: string | null = null;
   source!: DataSource;
   momentum: number[] = [];
 
@@ -98,6 +100,8 @@ export default class Match {
       this.resultHome = tchoukDotNetMatch.selection_a?.total_points ?? null;
       this.resultAway = tchoukDotNetMatch.selection_b?.total_points ?? null;
       this.periods = this.getPeriodsFromTchoukDotNetGame(tchoukDotNetMatch);
+      this.colorHome = tchoukDotNetMatch.selection_a?.jersey_color ?? null;
+      this.colorAway = tchoukDotNetMatch.selection_b?.jersey_color ?? null;
 
       this.momentum = tchoukDotNetMatch.analytics?.momentum ?? [];
     }

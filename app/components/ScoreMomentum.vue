@@ -26,14 +26,10 @@ import type { ChartConfiguration, Plugin } from 'chart.js';
 import Color from 'color';
 import type Match from '~/models/match.model';
 
-const route = useRoute();
-
 const { match = undefined } = defineProps<{ match?: Match | undefined }>();
+const { homeTeamColor, awayTeamColor } = useTeamColors(match);
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, Filler);
-
-const homeTeamColor = computed(() => validateColor(route.query.color_home) ?? match?.homeTeam?.color ?? '#cf2f28');
-const awayTeamColor = computed(() => validateColor(route.query.color_away) ?? match?.awayTeam?.color ?? '#00567c');
 
 const canvas = ref<HTMLCanvasElement>();
 let chart: Chart<'line', { x: number; y: number }[]> | undefined;
