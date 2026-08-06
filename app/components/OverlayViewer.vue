@@ -12,6 +12,7 @@
   <button @click="setScene('play-time')">Play time</button>
   <button @click="setScene('end-game')">End game</button>
   <button @click="setScene('momentum')">Momentum</button>
+  <button @click="setScene('lineups')">Line-ups</button>
 </template>
 
 <script lang="ts" setup>

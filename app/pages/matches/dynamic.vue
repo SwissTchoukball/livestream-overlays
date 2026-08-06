@@ -9,6 +9,7 @@
 
       <ScoreBanner :match="match" />
       <ScoreMomentum :match="match" />
+      <GameLineups :match="match" />
 
       <CompetitionLogo v-if="match?.competitionHasLogo" :match="match" small class="dynamic__competition-logo" />
       <CompetitionLogo
@@ -29,6 +30,7 @@
 import type Match from '~/models/match.model';
 import type { DataSource } from '~/types/dataSource';
 import type OverlayViewer from '~/components/OverlayViewer.vue';
+import GameLineups from "~/components/GameLineups.vue";
 
 const route = useRoute();
 const { getMatch, matchLoadingError } = useMatch(route.query.id as string, route.query.source as DataSource);
