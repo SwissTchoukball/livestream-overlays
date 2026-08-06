@@ -2,7 +2,37 @@ import type { DataSource } from '~/types/dataSource';
 import Team from './team.model';
 import type { JsonMatch } from '~/types/jsonData';
 import type { ClupikMatch, ClupikTournament } from '~/types/clupik';
-import type { TchoukNetCompetitionPhase, TchoukNetGame } from '~/types/tchoukDotNet';
+import type {
+  TchoukNetCompetitionPhase,
+  TchoukNetGame,
+  TchoukNetGameRole,
+  TchoukNetSelectionMember,
+} from '~/types/tchoukDotNet';
+
+/**
+ * A person selected for a match, either a player or a staff member.
+ */
+export interface SelectionMember {
+  id: string;
+  firstName: string;
+  lastName: string;
+  /** Jersey number, only set for players */
+  number: number | null;
+  isCaptain: boolean;
+  /** Roles such as "Coach" or "Assistant Coach", mostly set for staff members */
+  roles: string[];
+}
+
+/**
+ * A person officiating a match, such as a referee.
+ */
+export interface MatchOfficial {
+  id: string;
+  firstName: string;
+  lastName: string;
+  /** Role such as "Main Referee" or "Field Referee" */
+  role: string;
+}
 
 export default class Match {
   id!: string;
@@ -23,6 +53,11 @@ export default class Match {
   }[] = [];
   colorHome: string | null = null;
   colorAway: string | null = null;
+  playersHome: SelectionMember[] = [];
+  playersAway: SelectionMember[] = [];
+  staffHome: SelectionMember[] = [];
+  staffAway: SelectionMember[] = [];
+  officials: MatchOfficial[] = [];
   source!: DataSource;
   momentum: number[] = [];
 
@@ -103,6 +138,12 @@ export default class Match {
       this.colorHome = tchoukDotNetMatch.selection_a?.jersey_color ?? null;
       this.colorAway = tchoukDotNetMatch.selection_b?.jersey_color ?? null;
 
+      this.playersHome = this.getSelectionMembers(tchoukDotNetMatch.selection_a?.players);
+      this.playersAway = this.getSelectionMembers(tchoukDotNetMatch.selection_b?.players);
+      this.staffHome = this.getSelectionMembers(tchoukDotNetMatch.selection_a?.staff);
+      this.staffAway = this.getSelectionMembers(tchoukDotNetMatch.selection_b?.staff);
+      this.officials = this.getOfficials(tchoukDotNetMatch.public_game_roles);
+
       this.momentum = tchoukDotNetMatch.analytics?.momentum ?? [];
     }
 
@@ -161,6 +202,37 @@ export default class Match {
     if (competitionPhase?.competition?.event?.name.includes('Geneva Indoors')) {
       return 'geneva-indoors';
     }
+  }
+
+  /**
+   * Players are sorted by jersey number, as this is how line-ups are usually presented.
+   */
+  private getSelectionMembers(members?: TchoukNetSelectionMember[]): SelectionMember[] {
+    return (members ?? [])
+      .map((member) => ({
+        id: member.id,
+        firstName: member.person.first_name,
+        lastName: member.person.last_name,
+        number: member.number ?? null,
+        isCaptain: member.is_captain,
+        roles: member.selection_roles.map((role) => role.name),
+      }))
+      .toSorted((a, b) => (a.number ?? Infinity) - (b.number ?? Infinity));
+  }
+
+  /**
+   * The API is expected to only expose public roles, but we filter them again as we display them
+   * on the overlays.
+   */
+  private getOfficials(roles?: TchoukNetGameRole[]): MatchOfficial[] {
+    return (roles ?? [])
+      .filter((role) => role.role_function?.is_public)
+      .map((role) => ({
+        id: role.id,
+        firstName: role.person.first_name,
+        lastName: role.person.last_name,
+        role: role.role_function.name,
+      }));
   }
 
   private getPeriodsFromTchoukDotNetGame(game: TchoukNetGame): Match['periods'] {

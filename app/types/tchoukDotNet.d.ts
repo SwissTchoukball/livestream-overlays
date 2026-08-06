@@ -64,6 +64,30 @@ export type TchoukNetTeam = {
   team_entity: TchoukNetTeamEntity;
 };
 
+export type TchoukNetPerson = {
+  id: string;
+  first_name: string;
+  last_name: string;
+};
+
+export type TchoukNetSelectionRole = {
+  id: string;
+  name: string;
+  is_staff: boolean;
+};
+
+/**
+ * A person selected for a game, either as a player (with a jersey number) or as a staff member
+ * (with a role such as "Coach").
+ */
+export type TchoukNetSelectionMember = {
+  id: string;
+  person: TchoukNetPerson;
+  number?: number | null;
+  is_captain: boolean;
+  selection_roles: TchoukNetSelectionRole[];
+};
+
 export interface TchoukNetGameTeam {
   name: string;
   team: TchoukNetTeam;
@@ -74,8 +98,25 @@ export interface TchoukNetGameTeam {
     '3': number;
   };
   jersey_color: string;
+  players?: TchoukNetSelectionMember[];
+  staff?: TchoukNetSelectionMember[];
   id: string;
 }
+
+export type TchoukNetRoleFunction = {
+  id: string;
+  name: string;
+  is_public: boolean;
+};
+
+/**
+ * A person officiating a game, such as a referee.
+ */
+export type TchoukNetGameRole = {
+  id: string;
+  person: TchoukNetPerson;
+  role_function: TchoukNetRoleFunction;
+};
 
 export interface TchoukNetCoordinates {
   latitude: number;
@@ -123,6 +164,7 @@ export interface TchoukNetGame {
   is_playing?: boolean;
   has_ended?: boolean;
   status: 'announced' | 'planned' | 'started' | 'ended' | 'cancelled' | 'forfeited';
+  public_game_roles?: TchoukNetGameRole[];
   field?: TchoukNetField;
   organisation?: TchoukNetOrganisation;
   competition_phase?: TchoukNetCompetitionPhase;
