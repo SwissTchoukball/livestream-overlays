@@ -9,7 +9,7 @@ export default class Team {
   logo: string | null = null;
   color: string = 'white';
   source!: DataSource;
-  countryCode: { ioc?: string; iso2?: string } = {};
+  countryCode: { ioc?: string } = {};
 
   constructor(data: JsonTeam | ClupikTeam | TchoukNetGameTeam, source: DataSource) {
     this.source = source;
@@ -38,14 +38,16 @@ export default class Team {
       this.name = tchoukDotNetTeam.name;
       this.countryCode = {
         ioc: tchoukDotNetTeam.team.team_entity?.countries[0]?.ioc_code,
-        iso2: tchoukDotNetTeam.team.team_entity?.countries[0]?.iso_code2,
       };
     }
   }
 
   get countryFlagPath(): string | undefined {
-    if (this.countryCode.iso2) {
-      return `/images/flags/${this.countryCode.iso2.toLowerCase()}.svg`;
+    // The 2-letter ISO code got removed from the tchouk.net API.
+    // The code below has been updated to use the IOC code instead, but the filenames are still using the ISO code.
+    // TODO: Rename the flags filenames to the IOC code instead.
+    if (this.countryCode.ioc) {
+      return `/images/flags/${this.countryCode.ioc.toLowerCase()}.svg`;
     }
   }
 
